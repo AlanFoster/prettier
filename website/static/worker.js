@@ -81,6 +81,12 @@ var parsers = {
     return prettierPlugins.angular.parsers.__ng_directive;
   },
 
+  // Ruby
+  get ruby() {
+    importScriptOnce("lib/parser-ruby.js");
+    return prettierPlugins.ruby.parsers.ruby;
+  },
+
   // CSS
   get css() {
     importScriptOnce("lib/parser-postcss.js");

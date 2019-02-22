@@ -70,6 +70,11 @@ const parsers = [
     target: "universal"
   },
   {
+    input: "src/language-ruby/parser-ruby.js",
+    target: "universal",
+    bundler: "webpack"
+  },
+  {
     input: "src/language-handlebars/parser-glimmer.js",
     target: "universal",
     commonjs: {

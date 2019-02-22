@@ -36,6 +36,23 @@ export default function(parser) {
         "",
         'declare type FetchPolicy = "cache-first" | "cache-and-network" | "network-only" | "cache-only"'
       ].join("\n");
+
+    case "ruby":
+      return [
+        "        d=[30644250780,9003106878,\n" +
+        "    30636278846,66641217692,4501790980,\n" +
+        " 671_24_603036,131_61973916,66_606629_920,\n" +
+        "   30642677916,30643069058];a,s=[],$*[0]\n" +
+        "      s.each_byte{|b|a<<(\"%036b\"%d[b.\n" +
+        "         chr.to_i]).scan(/\\d{6}/)}\n" +
+        "          a.transpose.each{ |a|\n" +
+        "            a.join.each_byte{\\\n" +
+        "             |i|print i==49?\\\n" +
+        "               ($*[1]||\"#\")\\\n" +
+        "                 :32.chr}\n" +
+        "                   puts\n" +
+        "                    }"
+      ].join("\n");
     case "typescript":
       return [
         "interface MyInterface {",

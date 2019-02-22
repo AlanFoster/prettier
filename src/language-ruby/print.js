@@ -1,4 +1,4 @@
-const { breakParent, concat, hardline, lineSuffix } = require("prettier").doc.builders;
+const { breakParent, concat, hardline, lineSuffix } =  require("../doc").builders;
 const { printComments } = require("./utils");
 const nodes = require("./nodes");
 

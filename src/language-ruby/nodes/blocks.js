@@ -1,4 +1,4 @@
-const { breakParent, concat, group, ifBreak, indent, line, softline } = require("prettier").doc.builders;
+const { breakParent, concat, group, ifBreak, indent, line, softline } = require("../../doc").builders;
 
 const isCall = node => ["::", "."].includes(node) || node.type === "@period";
 

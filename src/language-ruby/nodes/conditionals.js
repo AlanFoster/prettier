@@ -1,4 +1,4 @@
-const { align, breakParent, concat, hardline, group, ifBreak, indent, softline } = require("prettier").doc.builders;
+const { align, breakParent, concat, hardline, group, ifBreak, indent, softline } = require("../../doc").builders
 
 const printWithAddition = (keyword, path, print, { breaking = false } = {}) => concat([
   `${keyword} `,
