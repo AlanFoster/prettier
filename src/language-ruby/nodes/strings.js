@@ -1,4 +1,4 @@
-const { concat, group, hardline, indent, join, line, literalline, softline } = require("prettier").doc.builders;
+const { concat, group, hardline, indent, join, line, literalline, softline } =  require("../../doc").builders;
 const { concatBody, empty, makeList, surround } = require("../utils");
 const escapePattern = require("../escapePattern");
 

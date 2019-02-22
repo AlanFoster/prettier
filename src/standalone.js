@@ -15,7 +15,8 @@ const internalPlugins = [
   require("./language-html"),
   require("./language-js"),
   require("./language-markdown"),
-  require("./language-yaml")
+  require("./language-yaml"),
+  require("./language-ruby/parser-ruby"),
 ];
 
 const isArray =

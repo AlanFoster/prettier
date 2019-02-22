@@ -1,17 +1,19 @@
-const { align, breakParent, concat, dedent, dedentToRoot, group, hardline, ifBreak, indent, join, line, lineSuffix, literalline, markAsRoot, softline, trim } = require("prettier").doc.builders;
+const { align, breakParent, concat, dedent, dedentToRoot, group, hardline, ifBreak, indent, join, line, lineSuffix, literalline, markAsRoot, softline, trim } = require("../doc").builders;
 const { concatBody, empty, first, literal, makeCall, makeList, prefix, printComments, skipAssignIndent, surround } = require("./utils");
 
-module.exports = {
-  ...require("./nodes/alias"),
-  ...require("./nodes/arrays"),
-  ...require("./nodes/blocks"),
-  ...require("./nodes/conditionals"),
-  ...require("./nodes/hooks"),
-  ...require("./nodes/loops"),
-  ...require("./nodes/methods"),
-  ...require("./nodes/params"),
-  ...require("./nodes/regexp"),
-  ...require("./nodes/strings"),
+module.exports = Object.assign(
+  {},
+  require("./nodes/alias"),
+  require("./nodes/arrays"),
+  require("./nodes/blocks"),
+  require("./nodes/conditionals"),
+  require("./nodes/hooks"),
+  require("./nodes/loops"),
+  require("./nodes/methods"),
+  require("./nodes/params"),
+  require("./nodes/regexp"),
+  require("./nodes/strings"),
+  {
   "@int": (path, opts, print) => {
     const { body } = path.getValue();
     return /^0[0-9]/.test(body) ? `0o${body.slice(1)}` : body;
@@ -619,4 +621,4 @@ module.exports = {
   },
   yield0: literal("yield"),
   zsuper: literal("super")
-};
+});

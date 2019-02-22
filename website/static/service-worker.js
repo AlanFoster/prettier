@@ -16,6 +16,7 @@ toolbox.precache([
   "lib/parser-html.js",
   "lib/parser-markdown.js",
   "lib/parser-postcss.js",
+  "lib/parser-ruby.js",
   "lib/parser-typescript.js",
   "lib/parser-yaml.js",
   "playground.js",
