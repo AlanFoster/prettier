@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Prettier 1.7: JSX tweaks, Pragma, TypeScript and CSS fixes · Prettier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This release features some bugfixes and tweaks around JSX, TypeScript, CSS, and JavaScript formatting, as well as a couple new features."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Prettier 1.7: JSX tweaks, Pragma, TypeScript and CSS fixes · Prettier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://prettier.io/blog/2017/09/15/1.7.0.html"/><meta property="og:description" content="This release features some bugfixes and tweaks around JSX, TypeScript, CSS, and JavaScript formatting, as well as a couple new features."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/icon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://prettier.io/blog/atom.xml" title="Prettier Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://prettier.io/blog/feed.xml" title="Prettier Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-111350464-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="//unpkg.com/@sandhose/prettier-animated-logo@1.0.3/dist/wide.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/icon.png" alt="Prettier"/><h2 class="headerTitleWithLogo">Prettier</h2></a><a href="/versions.html"><h3>stable</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/playground/" target="_self">Playground</a></li><li class=""><a href="/docs/en/index.html" target="_self">About</a></li><li class=""><a href="/docs/en/install.html" target="_self">Usage</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/prettier/prettier" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul><li class="navListItem"><a class="navItem" href="/blog/2019/01/20/1.16.0.html">Prettier 1.16: HTML improvements and better CRLF handling</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/1.15.0.html">Prettier 1.15: HTML, Vue, Angular and MDX Support</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/29/1.14.0.html">Prettier 1.14: YAML Support</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/05/27/1.13.0.html">Prettier 1.13: Conquering the web!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/04/11/1.12.0.html">Prettier 1.12: Fixes, Features, and Formatting, Oh My!</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2017/09/15/1.7.0.html">Prettier 1.7: JSX tweaks, Pragma, TypeScript and CSS fixes</a></h1><p class="post-meta">September 15, 2017</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/suchipi" target="_blank" rel="noreferrer noopener">@suchipi</a></p></div></header><div><span><p>This release features some bugfixes and tweaks around JSX, TypeScript, CSS, and JavaScript formatting, as well as a couple new features.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="highlights"></a><a href="#highlights" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Highlights</h2>
+<h3><a class="anchor" aria-hidden="true" id="jsx-changes"></a><a href="#jsx-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSX Changes</h3>
+<p>We received a lot of community feedback about the changes we made to JSX formatting in the 1.6.0 release, and have made changes to bring formatting closer to community standards and expectations.</p>
+<p>In 1.6.0, we added a second style for ternaries (conditional expressions, <code>a ? b : c</code>), based on a format popular in the community where parentheses are used to demarcate JSX content:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> DinnerOptions = <span class="hljs-function">(<span class="hljs-params">{ willEatMeat, willEatEggs, willEatVegetables }</span>) =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Let's get some dinner...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    {willEatMeat ? (
+      <span class="hljs-tag">&lt;<span class="hljs-name">FullMenu</span> /&gt;</span>
+    ) : willEatEggs ? (
+      <span class="hljs-tag">&lt;<span class="hljs-name">VegetarianMenu</span> /&gt;</span>
+    ) : willEatVegetables ? (
+      <span class="hljs-tag">&lt;<span class="hljs-name">VeganMenu</span> /&gt;</span>
+    ) : (
+      <span class="hljs-tag">&lt;<span class="hljs-name">BackupMenu</span> /&gt;</span>
+    )}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p>Before this was added, prettier only formatted ternaries with one consistent style:</p>
+<pre><code class="hljs css language-jsx">willEatMeat
+  ? <span class="hljs-string">"Full Menu"</span>
+  : willEatEggs
+    ? <span class="hljs-string">"Vegetarian Menu"</span>
+    : willEatVegetables ? <span class="hljs-string">"Vegan Menu"</span> : <span class="hljs-string">"Backup Menu"</span>;
+</code></pre>
+<p>In 1.6.0, we used the following heuristic to decide when to use the new &quot;JSX mode ternaries&quot;:</p>
+<pre><code class="hljs">We should print a ternary using JSX mode <span class="hljs-keyword">if</span>:
+  * The ternary <span class="hljs-keyword">contains</span> <span class="hljs-keyword">some</span> JSX <span class="hljs-keyword">in</span> <span class="hljs-keyword">it</span>
+  OR
+  * The ternary appears inside <span class="hljs-keyword">of</span> <span class="hljs-keyword">some</span> JSX
+</code></pre>
+<p>However, this heuristic caused some <a href="https://github.com/prettier/prettier/issues/2729">unexpected formatting</a>:
+<img src="/blog/assets/github-diff-ternary-in-jsx.png" alt="GitHub Diff showing a ternary containing internationalization strings appearing inside a JSX element being converted to use JSX-mode style ternaries"></p>
+<p>So, in 1.7.0, we have revised our heuristic to just be:</p>
+<pre><code class="hljs">We should print <span class="hljs-keyword">a</span> ternary <span class="hljs-keyword">using</span> JSX mode <span class="hljs-keyword">if</span>:
+  * The ternary <span class="hljs-keyword">contains</span> some JSX <span class="hljs-keyword">in</span> <span class="hljs-keyword">it</span>
+</code></pre>
+<p>We hope that this change will result in fewer surprising ternaries.</p>
+<p>A big thanks goes out to <a href="https://github.com/duailibe">@duailibe</a> who implemented this change in addition to several other JSX-related formatting issues that were reported.</p>
+<h3><a class="anchor" aria-hidden="true" id="css-letter-case-consistency"></a><a href="#css-letter-case-consistency" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CSS Letter Case Consistency</h3>
+<p>We spent some time this release polishing our CSS formatting, and as part of that, <a href="https://github.com/lydell">@lydell</a> <a href="https://github.com/prettier/prettier/issues/2653">did some work to normalize letter case</a>.</p>
+<p>So now, almost everything in CSS will print using <code>lower case</code>.</p>
+<pre><code class="hljs css language-css"><span class="hljs-comment">/* Before */</span>
+<span class="hljs-selector-tag">DIV</span><span class="hljs-selector-class">.Foo</span> {
+  <span class="hljs-attribute">HEIGHT</span>: <span class="hljs-number">12PX</span>;
+}
+
+<span class="hljs-comment">/* After */</span>
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.Foo</span> {
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">12px</span>;
+}
+</code></pre>
+<p>Don't worry, though – Prettier won't touch your <code>$scss-variables</code>, <code>[@less](https://github.com/less)-variables</code>, or <code>FunctionNames()</code>. Preprocess on!</p>
+<h3><a class="anchor" aria-hidden="true" id="pragma-support"></a><a href="#pragma-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pragma Support</h3>
+<p>There is a new option called <code>--require-pragma</code> (<code>requirePragma</code> via the API) which will change prettier's behavior so that it only reformats a file if it has a special &quot;pragma&quot; comment at the top of it, that looks like this:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">/**
+ * @prettier
+ */</span>
+</code></pre>
+<p>or</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">/**
+ * @format
+ */</span>
+</code></pre>
+<p>This was <a href="https://github.com/ajhyndman">@ajhyndman</a>'s idea and it was implemented by <a href="https://github.com/wbinnssmith">@wbinnssmith</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="other-changes"></a><a href="#other-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other Changes</h2>
+<h3><a class="anchor" aria-hidden="true" id="typescript"></a><a href="#typescript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript</h3>
+<p>There was a bug in Prettier 1.6.1 where an error would be thrown while parsing any TypeScript using the <code>never</code> type, for example:</p>
+<pre><code class="hljs css language-ts">Observable.empty&lt;never&gt;();
+</code></pre>
+<p>Also, Prettier 1.6.1 was incorrectly removing the <code>declare</code> keyword from <code>enum</code> declarations in <code>*.d.ts</code> files:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// In</span>
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">enum</span> Foo {}
+
+<span class="hljs-comment">// Out</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">enum</span> Foo {}
+</code></pre>
+<p>Both of these issues have been fixed. Thanks to <a href="https://github.com/JamesHenry">@JamesHenry</a> and <a href="https://github.com/existentialism">@existentialism</a> for these fixes which support our TypeScript community!</p>
+<h3><a class="anchor" aria-hidden="true" id="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h3>
+<h4><a class="anchor" aria-hidden="true" id="configurable-config-precedence"></a><a href="#configurable-config-precedence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configurable Config Precedence</h4>
+<p>There is a new CLI option <code>--config-precedence</code> which configures how prettier should prioritize config sources. Valid values are:</p>
+<p><strong><code>cli-override</code></strong> (default) - CLI options take precedence over config file</p>
+<p><strong><code>file-override</code></strong> - Config file take precedence over CLI options</p>
+<p><strong><code>prefer-file</code></strong> - If a config file is found will evaluate it and ignore other CLI options. If no config file is found CLI options will evaluate as normal.</p>
+<p>This option adds support to editor integrations where users define their default configuration but want to respect project specific configuration.</p>
+<h4><a class="anchor" aria-hidden="true" id="prettierresolveconfigsync"></a><a href="#prettierresolveconfigsync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>prettier.resolveConfig.sync</code></h4>
+<p>Previously, there was no way via the API to resolve configuration for a source file synchronously. Thanks to <a href="https://github.com/davidtheclark/cosmiconfig/pull/78">some new additions to <code>cosmiconfig</code></a> by <a href="https://github.com/sudo">@sudo</a>-suhas, <a href="https://github.com/ikatyang">@ikatyang</a> was able to add support for this to the prettier API.</p>
+<h3><a class="anchor" aria-hidden="true" id="prs-merged-in-this-release"></a><a href="#prs-merged-in-this-release" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>PRs merged in this release</h3>
+<ul>
+<li><a href="https://github.com/prettier/prettier/pull/2690"><strong>Update README.md</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2692"><strong>Fix config file finding when using stdin</strong></a> by <a href="https://github.com/lydell">@lydell</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2700"><strong>docs(readme): add and sort cli options</strong></a> by <a href="https://github.com/levithomason">@levithomason</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2706"><strong>Add Transloadit as a user</strong></a> by <a href="https://github.com/kvz">@kvz</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2710"><strong>Ensure parens around LogicalExpression inside ExperimentalSpreadProperty</strong></a> by <a href="https://github.com/existentialism">@existentialism</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2711"><strong>Fix printing declare modifier for TS enum</strong></a> by <a href="https://github.com/existentialism">@existentialism</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2713"><strong>Handle +/- before numbers in CSS</strong></a> by <a href="https://github.com/xtian">@xtian</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2719"><strong>Add Tradeshift as a user</strong></a> by <a href="https://github.com/sampi">@sampi</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2722"><strong>feat(resolve-config): add <code>.sync()</code> method</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2728"><strong>refactor(bin): use <code>resolveConfigFile.sync()</code></strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2730"><strong>refactor(cli): separate files and make it pure as possible</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2731"><strong>Fix cosmiconfig dependency branch</strong></a> by <a href="https://github.com/josephfrazier">@josephfrazier</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2732"><strong>Upgrade chalk to v2.1.0</strong></a> by <a href="https://github.com/josephfrazier">@josephfrazier</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2733"><strong>Add CLI option '--config-precedence'</strong></a> by <a href="https://github.com/mitermayer">@mitermayer</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2736"><strong>Normalize CSS case</strong></a> by <a href="https://github.com/lydell">@lydell</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2737"><strong>Make run-external-typescript-tests.js cross-platform</strong></a> by <a href="https://github.com/lydell">@lydell</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2738"><strong>test(integration): add more tests</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2739"><strong>chore(deps): remove devDependency <code>cross-spawn</code></strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2741"><strong>Ignore some things in coverage</strong></a> by <a href="https://github.com/lydell">@lydell</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2742"><strong>Generalize run-external-typescript-tests.js</strong></a> by <a href="https://github.com/lydell">@lydell</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2746"><strong>Improve lint-staged setup example by adding more filetypes</strong></a> by <a href="https://github.com/MoOx">@MoOx</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2748"><strong>fixes dynamic imports</strong></a> by <a href="https://github.com/rkurbatov">@rkurbatov</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2750"><strong>Refactor error handling</strong></a> by <a href="https://github.com/azz">@azz</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2755"><strong>chore(github): add issue template</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2756"><strong>Fix: TypeScript never keyword (fixes <a href="https://github.com/prettier/prettier/pull/2718">#2718</a>)</strong></a> by <a href="https://github.com/JamesHenry">@JamesHenry</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2758"><strong>Group last argument if it's an empty object with a comment</strong></a> by <a href="https://github.com/duailibe">@duailibe</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2759"><strong>Use <code>files:</code> over <code>types:</code> in pre-commit configuration</strong></a> by <a href="https://github.com/asottile">@asottile</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2764"><strong>refactor(runPrettier): reduce duplicate code</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2768"><strong>Change when to print ternaries in JSX mode</strong></a> by <a href="https://github.com/duailibe">@duailibe</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2770"><strong>Fix chained logical expressions with objects/array/etc inlined</strong></a> by <a href="https://github.com/duailibe">@duailibe</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2772"><strong>Add option to require @prettier or @format pragma</strong></a> by <a href="https://github.com/wbinnssmith">@wbinnssmith</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2776"><strong>chore(build): update ISSUE_TEMPLATE.md before publish</strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2779"><strong>Fix break on conditional expressions inside return</strong></a> by <a href="https://github.com/duailibe">@duailibe</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2781"><strong>Support graphql(schema, <code>query</code>)</strong></a> by <a href="https://github.com/azz">@azz</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2783"><strong>fix(prettierignore): support absolute filename</strong></a> by <a href="https://github.com/ambar">@ambar</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2784"><strong>Keep conditional expressions in one line on method chains</strong></a> by <a href="https://github.com/duailibe">@duailibe</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2785"><strong>fix(build): update ISSUE_TEMPLATE using regex <code>?:</code> instead of <code>?!</code></strong></a> by <a href="https://github.com/ikatyang">@ikatyang</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2786"><strong>Break closing paren of ConditionalExpression in member chains</strong></a> by <a href="https://github.com/duailibe">@duailibe</a></li>
+<li><a href="https://github.com/prettier/prettier/pull/2796"><strong>fix webstorm integration guide</strong></a> by <a href="https://github.com/xsburg">@xsburg</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="issues-resolved-in-this-release"></a><a href="#issues-resolved-in-this-release" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Issues resolved in this release</h3>
+<ul>
+<li><a href="https://github.com/prettier/prettier/issues/2698"><strong>Document missing CLI options</strong></a> reported by <a href="https://github.com/levithomason">@levithomason</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2708"><strong>Formatting of Spread Properties differs between Babylon and TypeScript</strong></a> reported by <a href="https://github.com/mariusschulz">@mariusschulz</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2709"><strong>Removal of the <code>declare</code> modifier from <code>enum</code></strong></a> reported by <a href="https://github.com/mariusschulz">@mariusschulz</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2712"><strong>Decimal formatting doesn't get all decimals in a rule.</strong></a> reported by <a href="https://github.com/itsgreggreg">@itsgreggreg</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2726"><strong>Use resolveConfigFile.sync in the CLI</strong></a> reported by <a href="https://github.com/azz">@azz</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2653"><strong>CSS: Normalize case (lower vs upper) on stuff</strong></a> reported by <a href="https://github.com/lydell">@lydell</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/1489"><strong>Dynamic import with webpackChunkName comment fails</strong></a> reported by <a href="https://github.com/pbomb">@pbomb</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2718"><strong>TypeScript: never as type parameter causes error: unknown type: undefined</strong></a> reported by <a href="https://github.com/hccampos">@hccampos</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2617"><strong>commented object values</strong></a> reported by <a href="https://github.com/sylvainbaronnet">@sylvainbaronnet</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2745"><strong>Configuring pre-commit for jsx, TypeScript, tsx</strong></a> reported by <a href="https://github.com/reywright">@reywright</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2729"><strong>JSX ternaries include parens</strong></a> reported by <a href="https://github.com/jasonLaster">@jasonLaster</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2714"><strong>Chained Short Circuit Conditionals in JSX</strong></a> reported by <a href="https://github.com/brycehill">@brycehill</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2397"><strong>Support @prettier pragma comment</strong></a> reported by <a href="https://github.com/ajhyndman">@ajhyndman</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2777"><strong>No indentation after breaking return statement</strong></a> reported by <a href="https://github.com/jwbay">@jwbay</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2780"><strong>Support graphql() fn and so make 2nd arg prettier</strong></a> reported by <a href="https://github.com/brikou">@brikou</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2782"><strong>prettierignore: cannot use absolute filename</strong></a> reported by <a href="https://github.com/ambar">@ambar</a></li>
+<li><a href="https://github.com/prettier/prettier/issues/2775"><strong>Weird JavaScript format</strong></a> reported by <a href="https://github.com/maxime1992">@maxime1992</a></li>
+</ul>
+<hr>
+<p>Thank you to everyone who contributed to this release, be it through issue creation, code contribution, code review, or general commenting and feedback. Prettier is a community-run project and is able to continue to exist thanks to people like you. Thank you!</p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Prettier 1.7: JSX tweaks, Pragma, TypeScript and CSS fixes" data-url="https://prettier.io/blog/2017/09/15/1.7.0.html" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#highlights">Highlights</a><ul class="toc-headings"><li><a href="#jsx-changes">JSX Changes</a></li><li><a href="#css-letter-case-consistency">CSS Letter Case Consistency</a></li><li><a href="#pragma-support">Pragma Support</a></li></ul></li><li><a href="#other-changes">Other Changes</a><ul class="toc-headings"><li><a href="#typescript">TypeScript</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#prs-merged-in-this-release">PRs merged in this release</a></li><li><a href="#issues-resolved-in-this-release">Issues resolved in this release</a></li></ul></li></ul></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/icon.png" alt="Prettier"/></a><div><h5>Docs</h5><a href="/docs/en/index.html">About</a><a href="/docs/en/install.html">Usage</a></div><div><h5>Community</h5><a href="/en/users">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/prettier" target="_blank" rel="noopener noreferrer">Stack Overflow</a><a href="https://gitter.im/jlongster/prettier">Chat on Gitter</a><a href="https://twitter.com/PrettierCode">@PrettierCode on Twitter</a><object type="image/svg+xml" data="https://img.shields.io/twitter/follow/prettiercode.svg?label=Follow+Prettier&amp;style=social"><a href="https://twitter.com/intent/follow?screen_name=prettiercode"><img alt="Follow Prettier on Twitter" src="https://img.shields.io/twitter/follow/prettiercode.png?label=Follow+Prettier&amp;style=social"/></a></object></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/prettier/prettier">GitHub</a><a href="https://github.com/prettier/prettier/issues">Issues</a><a class="github-button" href="https://github.com/prettier/prettier" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'undefined',
+                indexName: 'prettier',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

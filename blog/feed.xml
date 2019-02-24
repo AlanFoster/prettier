@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Prettier Blog</title>
+        <link>https://prettier.io/blog</link>
+        <description>The best place to stay up-to-date with the latest Prettier news and events.</description>
+        <lastBuildDate>Sun, 20 Jan 2019 06:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Prettier Blog</title>
+            <url>https://prettier.io/icon.png</url>
+            <link>https://prettier.io/blog</link>
+        </image>
+        <item>
+            <title><![CDATA[Prettier 1.16: HTML improvements and better CRLF handling]]></title>
+            <link>https://prettier.io/blog/2019/01/20/1.16.0.html</link>
+            <guid>https://prettier.io/blog/2019/01/20/1.16.0.html</guid>
+            <pubDate>Sun, 20 Jan 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release improves HTML formatting and contains better CRLF handling, new
+syntax features, and fixes several bugs.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.15: HTML, Vue, Angular and MDX Support]]></title>
+            <link>https://prettier.io/blog/2018/11/07/1.15.0.html</link>
+            <guid>https://prettier.io/blog/2018/11/07/1.15.0.html</guid>
+            <pubDate>Wed, 07 Nov 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release adds support for HTML, Vue, Angular and MDX.
+It also respects decorator position,
+adds an option for JSX single quotes,
+allows parser inference via shebang,
+adds support for several new syntax features, and has a few formatting tweaks.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.14: YAML Support]]></title>
+            <link>https://prettier.io/blog/2018/07/29/1.14.0.html</link>
+            <guid>https://prettier.io/blog/2018/07/29/1.14.0.html</guid>
+            <pubDate>Sun, 29 Jul 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release adds YAML support, pragma (i.e. <code>/** @prettier */</code>) support for every language, and improves performance on large files. It also adds support for several new syntax features, and has a few formatting tweaks to make your code even prettier. ✨</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.13: Conquering the web!]]></title>
+            <link>https://prettier.io/blog/2018/05/27/1.13.0.html</link>
+            <guid>https://prettier.io/blog/2018/05/27/1.13.0.html</guid>
+            <pubDate>Sun, 27 May 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This releases adds support for several new syntax features, formatting fixes and first-class support for working in the browser.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.12: Fixes, Features, and Formatting, Oh My!]]></title>
+            <link>https://prettier.io/blog/2018/04/11/1.12.0.html</link>
+            <guid>https://prettier.io/blog/2018/04/11/1.12.0.html</guid>
+            <pubDate>Wed, 11 Apr 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Hello everyone, and welcome to Prettier 1.12.0! This release contains a lot of bugfixes, formatting adjustments, new features for our plugin API, and new Markdown features.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier for PHP 0.1: First alpha release 🎉]]></title>
+            <link>https://prettier.io/blog/2018/04/09/plugin-php-0.1.html</link>
+            <guid>https://prettier.io/blog/2018/04/09/plugin-php-0.1.html</guid>
+            <pubDate>Mon, 09 Apr 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>After more than 200 merged pull requests since mid December 2017, we're happy to announce the first alpha release of <a href="https://github.com/prettier/plugin-php">Prettier for PHP</a>. In this blog post, we'd like to give a short overview of how the plugin works, its philosophy, and what to expect in the future.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.11: CSS fixes and new TypeScript feature support]]></title>
+            <link>https://prettier.io/blog/2018/02/26/1.11.0.html</link>
+            <guid>https://prettier.io/blog/2018/02/26/1.11.0.html</guid>
+            <pubDate>Mon, 26 Feb 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release features a ton of CSS formatting fixes as well as support for some new TypeScript features, in addition to some general bugfixes for other languages.</p>
+<p>Since the last release, the <a href="https://prettier.io">Prettier website</a> has gotten an all-new design thanks to <a href="https://github.com/orta">@orta</a>!</p>
+<h3><a class="anchor" aria-hidden="true" id="facebook-is-prettier"></a><a href="#facebook-is-prettier" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Facebook is 💯% Prettier</h3>
+<p>Another exciting announcement is that all the JavaScript files in the Facebook codebase have now been converted to Prettier! What's mindblowing is that there hasn't been a concerted push to convert the codebase to Prettier, we just added the tooling in place and documentation on how to migrate a folder to Prettier and people just started converting their piece of the codebase.</p>
+<p>In 8 months, 75% of the codebase was organically converted and last week we did a final push to convert the rest and enforce that every file from now on is using Prettier! It shows that Prettier is robust to support all the crazy edge cases you can imagine and also that it provides a lot of value given the crazy adoption rate.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.10: One Year of Prettier 🎂]]></title>
+            <link>https://prettier.io/blog/2018/01/10/1.10.0.html</link>
+            <guid>https://prettier.io/blog/2018/01/10/1.10.0.html</guid>
+            <pubDate>Wed, 10 Jan 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Happy Prettier-versary! It's pretty incredible that Prettier was only released a year ago and has already seen such a massive adoption and great number of contributors. For this special release, we're going to do a small retrospective around the project.</p>
+<p>It's also an exciting release in itself because Prettier now has partial support for <code>.vue</code> files and the internals have been refactored such that there's a proper plugin API in order to support different languages!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.9: JSX Fragments, EditorConfig and Arrow Parens]]></title>
+            <link>https://prettier.io/blog/2017/12/05/1.9.0.html</link>
+            <guid>https://prettier.io/blog/2017/12/05/1.9.0.html</guid>
+            <pubDate>Tue, 05 Dec 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release adds an option for arrow function parens in arguments, support for the <a href="https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html">new JSX fragment syntax (<code>&lt;&gt;</code>)</a>, support for <code>.editorconfig</code> files, and nice additions to our GraphQL and Markdown support.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.8: Markdown Support]]></title>
+            <link>https://prettier.io/blog/2017/11/07/1.8.0.html</link>
+            <guid>https://prettier.io/blog/2017/11/07/1.8.0.html</guid>
+            <pubDate>Tue, 07 Nov 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release adds Markdown support, a new <code>--insert-pragma</code> flag, fixes a number of formatting issues, adds support for some new <em>experimental</em> operators, and improves our editor integration support.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.7: JSX tweaks, Pragma, TypeScript and CSS fixes]]></title>
+            <link>https://prettier.io/blog/2017/09/15/1.7.0.html</link>
+            <guid>https://prettier.io/blog/2017/09/15/1.7.0.html</guid>
+            <pubDate>Fri, 15 Sep 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release features some bugfixes and tweaks around JSX, TypeScript, CSS, and JavaScript formatting, as well as a couple new features.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.6: Config File, JSX]]></title>
+            <link>https://prettier.io/blog/2017/08/29/1.6.0.html</link>
+            <guid>https://prettier.io/blog/2017/08/29/1.6.0.html</guid>
+            <pubDate>Tue, 29 Aug 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release adds configuration file support to Prettier, as well as some significant enhancements to JSX printing.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.5: GraphQL, CSS-in-JS & JSON]]></title>
+            <link>https://prettier.io/blog/2017/06/28/1.5.0.html</link>
+            <guid>https://prettier.io/blog/2017/06/28/1.5.0.html</guid>
+            <pubDate>Wed, 28 Jun 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release adds GraphQL formatting support, CSS-in-JS (including styled-components), and JSON support to Prettier.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.4: TypeScript and CSS support]]></title>
+            <link>https://prettier.io/blog/2017/06/03/1.4.0.html</link>
+            <guid>https://prettier.io/blog/2017/06/03/1.4.0.html</guid>
+            <pubDate>Sat, 03 Jun 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This release introduces support for TypeScript, CSS, Less, and SCSS languages to Prettier!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.3]]></title>
+            <link>https://prettier.io/blog/2017/05/03/1.3.0.html</link>
+            <guid>https://prettier.io/blog/2017/05/03/1.3.0.html</guid>
+            <pubDate>Wed, 03 May 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This post provides an update to Facebook's adoption or Prettier, outlines our progress on TypeScript, and details some of the improvements and fixes included in the 1.3.0 release of Prettier.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Prettier 1.2]]></title>
+            <link>https://prettier.io/blog/2017/04/20/1.2.0.html</link>
+            <guid>https://prettier.io/blog/2017/04/20/1.2.0.html</guid>
+            <pubDate>Thu, 20 Apr 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>1.0 is not the end of prettier, we're going to continue to work on the long tail of formatting issues in order to make it an awesome JavaScript code formatter. You should expect minor version releases like this one to change small things and edge cases but nothing major or controversial.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Releasing Prettier 1.0]]></title>
+            <link>https://prettier.io/blog/2017/04/13/1.0.0.html</link>
+            <guid>https://prettier.io/blog/2017/04/13/1.0.0.html</guid>
+            <pubDate>Thu, 13 Apr 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><em>This post was written by <a href="https://twitter.com/vjeux">vjeux</a> and edited by
+<a href="https://twitter.com/jlongster">jlongster</a>, and originally published <a href="http://jlongster.com/prettier-1.0">here</a></em></p>
+<p>We officially <a href="http://jlongster.com/A-Prettier-Formatter">announced</a>
+<a href="https://github.com/prettier/prettier">prettier</a> over two months ago as a way to
+solve the problem of wasting time formatting your code. It started as an
+experiment but it clearly resonated with a lot of people, amassing ~7000 GitHub
+stars and over 100,000 monthly <code>npm downloads</code> in just two months.</p>
+]]></description>
+        </item>
+    </channel>
+</rss>

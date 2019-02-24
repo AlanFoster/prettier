@@ -1,0 +1,835 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Prettier 1.14: YAML Support · Prettier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This release adds YAML support, pragma (i.e. `/** @prettier */`) support for every language, and improves performance on large files. It also adds support for several new syntax features, and has a few formatting tweaks to make your code even prettier. ✨"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Prettier 1.14: YAML Support · Prettier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://prettier.io/blog/2018/07/29/1.14.0.html"/><meta property="og:description" content="This release adds YAML support, pragma (i.e. `/** @prettier */`) support for every language, and improves performance on large files. It also adds support for several new syntax features, and has a few formatting tweaks to make your code even prettier. ✨"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/icon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://prettier.io/blog/atom.xml" title="Prettier Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://prettier.io/blog/feed.xml" title="Prettier Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-111350464-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="//unpkg.com/@sandhose/prettier-animated-logo@1.0.3/dist/wide.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/icon.png" alt="Prettier"/><h2 class="headerTitleWithLogo">Prettier</h2></a><a href="/versions.html"><h3>stable</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/playground/" target="_self">Playground</a></li><li class=""><a href="/docs/en/index.html" target="_self">About</a></li><li class=""><a href="/docs/en/install.html" target="_self">Usage</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/prettier/prettier" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul><li class="navListItem"><a class="navItem" href="/blog/2019/01/20/1.16.0.html">Prettier 1.16: HTML improvements and better CRLF handling</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/1.15.0.html">Prettier 1.15: HTML, Vue, Angular and MDX Support</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2018/07/29/1.14.0.html">Prettier 1.14: YAML Support</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/05/27/1.13.0.html">Prettier 1.13: Conquering the web!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/04/11/1.12.0.html">Prettier 1.12: Fixes, Features, and Formatting, Oh My!</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2018/07/29/1.14.0.html">Prettier 1.14: YAML Support</a></h1><p class="post-meta">July 29, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/ikatyang" target="_blank" rel="noreferrer noopener">Ika (@ikatyang)</a></p></div></header><div><span><p>This release adds YAML support, pragma (i.e. <code>/** @prettier */</code>) support for every language, and improves performance on large files. It also adds support for several new syntax features, and has a few formatting tweaks to make your code even prettier. ✨</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="highlights"></a><a href="#highlights" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Highlights</h2>
+<h3><a class="anchor" aria-hidden="true" id="yaml"></a><a href="#yaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>YAML</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-yaml-4563-4742-4773-4854-by-ikatyang"></a><a href="#support-yaml-4563-4742-4773-4854-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support YAML (<a href="https://github.com/prettier/prettier/pull/4563">#4563</a>, <a href="https://github.com/prettier/prettier/pull/4742">#4742</a>, <a href="https://github.com/prettier/prettier/pull/4773">#4773</a>, <a href="https://github.com/prettier/prettier/pull/4854">#4854</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Prettier can now format YAML files! 🎉</p>
+<p>The implementation is highly compliant with the <a href="http://yaml.org/spec/">YAML spec</a>, and backed by the excellent <a href="https://github.com/eemeli/yaml"><code>yaml</code></a> package thanks to <a href="https://github.com/eemeli">@eemeli</a>. A few highlights:</p>
+<h5><a class="anchor" aria-hidden="true" id="word-wrap"></a><a href="#word-wrap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Word wrap</h5>
+<p>Just like in Markdown, we’ll hard-wrap prose at 80-characters if it doesn’t affect the meaning of the file.</p>
+<p>Input:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-string">&gt;
+  Voilà! In view, a humble vaudevillian veteran cast vicariously as both victim and villain by the vicissitudes of Fate. This visage, no mere veneer of vanity, is a vestige of the vox populi, now vacant, vanished. However, this valourous visitation of a bygone vexation stands vivified and has vowed to vanquish these venal and virulent vermin vanguarding vice and vouchsafing the violently vicious and voracious violation of volition! The only verdict is vengeance; a vendetta held as a votive, not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous. Verily, this vichyssoise of verbiage veers most verbose, so let me simply add that it’s my very good honour to meet you and you may call me V.
+</span></code></pre>
+<p>Output: (<code>--prose-wrap always</code>)</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-string">&gt;
+  Voilà! In view, a humble vaudevillian veteran cast vicariously as both victim
+  and villain by the vicissitudes of Fate. This visage, no mere veneer of
+  vanity, is a vestige of the vox populi, now vacant, vanished. However, this
+  valourous visitation of a bygone vexation stands vivified and has vowed to
+  vanquish these venal and virulent vermin vanguarding vice and vouchsafing the
+  violently vicious and voracious violation of volition! The only verdict is
+  vengeance; a vendetta held as a votive, not in vain, for the value and
+  veracity of such shall one day vindicate the vigilant and the virtuous.
+  Verily, this vichyssoise of verbiage veers most verbose, so let me simply add
+  that it’s my very good honour to meet you and you may call me V.
+</span></code></pre>
+<blockquote>
+<p>Note: the <a href="https://prettier.io/docs/en/options.html#prose-wrap"><code>proseWrap</code></a> option is set to <code>preserve</code> by default so you’ll have to specify <code>always</code> or <code>never</code> to enable this feature.</p>
+</blockquote>
+<h5><a class="anchor" aria-hidden="true" id="ignore-a-portion-of-the-file"></a><a href="#ignore-a-portion-of-the-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ignore a portion of the file</h5>
+<p>If for some reason you don’t want to format a part of the YAML file, you can always put an ignore comment before it:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># prettier-ignore</span>
+<span class="hljs-string">key</span>  <span class="hljs-string">:</span> <span class="hljs-string">value</span>
+<span class="hljs-attr">hello:</span> <span class="hljs-string">world</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="front-matter"></a><a href="#front-matter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Front Matter</h3>
+<h4><a class="anchor" aria-hidden="true" id="format-yaml-front-matter-4773-by-ikatyang"></a><a href="#format-yaml-front-matter-4773-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Format YAML front matter (<a href="https://github.com/prettier/prettier/pull/4773">#4773</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Prettier can now format <code>---</code>-delimited YAML front matter in CSS and Markdown files:</p>
+<p>Input &amp; Output (Prettier 1.13):</p>
+<pre><code class="hljs css language-markdown">---
+<span class="hljs-section">key  : value
+---</span>
+
+<span class="hljs-section"># heading</span>
+
+content
+</code></pre>
+<p>Output (Prettier 1.14):</p>
+<pre><code class="hljs css language-markdown">---
+<span class="hljs-section">key: value
+---</span>
+
+<span class="hljs-section"># heading</span>
+
+content
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="pragma"></a><a href="#pragma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pragma</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-requirepragma-insertpragma-in-every-language-4688-4699-4713-by-ikatyang"></a><a href="#support-requirepragma-insertpragma-in-every-language-4688-4699-4713-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support <code>requirePragma</code>/<code>insertPragma</code> in every language (<a href="https://github.com/prettier/prettier/pull/4688">#4688</a>, <a href="https://github.com/prettier/prettier/pull/4699">#4699</a>, <a href="https://github.com/prettier/prettier/pull/4713">#4713</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Prettier 1.7.0 and 1.8.0 introduced two new options:
+<a href="https://prettier.io/docs/en/options.html#require-pragma"><code>--require-pragma</code></a> and
+<a href="https://prettier.io/docs/en/options.html#insert-pragma"><code>--insert-pragma</code></a>.
+However, these options were only supported in a few languages.
+Now these options are available in every language, including YAML!</p>
+<ul>
+<li><p>YAML</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># @prettier</span>
+
+<span class="hljs-attr">key:</span> <span class="hljs-string">value</span>
+</code></pre></li>
+<li><p>CSS/Less/SCSS</p>
+<pre><code class="hljs css language-css"><span class="hljs-comment">/** @prettier */</span>
+
+<span class="hljs-selector-class">.class</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+</code></pre></li>
+<li><p>GraphQL</p>
+<pre><code class="hljs css language-gql"># @prettier
+
+<span class="hljs-keyword">query</span> <span class="hljs-keyword">Browse</span>(<span class="hljs-variable">$offset</span>: Int) {
+  <span class="hljs-keyword">browse</span>(offset: <span class="hljs-variable">$offset</span>)
+}
+</code></pre></li>
+<li><p>Vue</p>
+<pre><code class="hljs css language-html"><span class="hljs-comment">&lt;!-- @prettier --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Template<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="javascript"></a><a href="#javascript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript</h3>
+<h4><a class="anchor" aria-hidden="true" id="never-inline-decorators-unless-they-re-lone-parameter-decorators-4830-by-suchipi"></a><a href="#never-inline-decorators-unless-they-re-lone-parameter-decorators-4830-by-suchipi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Never inline decorators unless they’re lone parameter decorators (<a href="https://github.com/prettier/prettier/pull/4830">#4830</a> by <a href="https://github.com/@suchipi">@suchipi</a>)</h4>
+<p>Previously, decorators were always inlined since MobX inlined them by convention,
+but reports from the community led us to discover that MobX is the only major library that follows this convention.
+Prettier now puts decorators on their own lines unless they’re parameter decorators.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// Input</span>
+<span class="hljs-meta">@observer</span>
+<span class="hljs-keyword">class</span> OrderLine {
+  <span class="hljs-meta">@observable</span>
+  price: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;
+  <span class="hljs-meta">@observable</span> amount: <span class="hljs-built_in">number</span> = <span class="hljs-number">1</span>;
+
+  foo(<span class="hljs-meta">@required</span> name) {
+    <span class="hljs-built_in">console</span>.log(name);
+  }
+}
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-meta">@observer</span>
+<span class="hljs-keyword">class</span> OrderLine {
+  <span class="hljs-meta">@observable</span> price: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;
+  <span class="hljs-meta">@observable</span> amount: <span class="hljs-built_in">number</span> = <span class="hljs-number">1</span>;
+
+  foo(<span class="hljs-meta">@required</span> name) {
+    <span class="hljs-built_in">console</span>.log(name);
+  }
+}
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-meta">@observer</span>
+<span class="hljs-keyword">class</span> OrderLine {
+  <span class="hljs-meta">@observable</span>
+  price: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;
+  <span class="hljs-meta">@observable</span>
+  amount: <span class="hljs-built_in">number</span> = <span class="hljs-number">1</span>;
+
+  foo(<span class="hljs-meta">@required</span> name) {
+    <span class="hljs-built_in">console</span>.log(name);
+  }
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="handle-jsx-whitespace-separately-from-fbt-whitespace-4717-by-karl"></a><a href="#handle-jsx-whitespace-separately-from-fbt-whitespace-4717-by-karl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Handle JSX whitespace separately from fbt whitespace (<a href="https://github.com/prettier/prettier/pull/4717">#4717</a> by <a href="https://github.com/karl">@karl</a>)</h4>
+<p>Previously, JSX whitespace was always preserved
+since Facebook has a custom translation pipeline (<code>fbt</code>) that uses JSX syntax but treats whitespace differently than regular JSX,
+which meant we couldn’t change JSX whitespace without breaking the Facebook codebase.
+In Prettier 1.14, we now detect Facebook <code>fbt</code> tags and handle whitespace for them differently from other JSX tags,
+improving the consistency across different but equivalent inputs.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">// Input and Output from Prettier 1.13</span>
+first = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Text<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    More text<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    And more<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+second = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Text<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>More text<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>And more<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+third = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    More text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    And more
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-comment">// Output from Prettier 1.14</span>
+first = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    More text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    And more
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+second = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    More text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    And more
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+third = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    More text
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    And more
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p>When the text separating tags or expressions is just a single character
+we print the entire group on a single line where possible.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">// Input and Output from Prettier 1.13</span>
+x = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {hour}:{minute}:{second}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+x = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {hour}
+    :
+    {minute}
+    :
+    {second}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+x = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {hour}:
+    {minute}:
+    {second}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-comment">// Output from Prettier 1.14</span>
+x = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {hour}:{minute}:{second}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+x = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {hour}:{minute}:{second}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+x = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {hour}:{minute}:{second}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p>It also improves the output of edges cases like this:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">// Input</span>
+this_really_should_split_across_lines =
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    before{stuff}after{stuff}after{stuff}after{stuff}after{stuff}after{stuff}after{stuff}after
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+this_really_should_split_across_lines = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    before{stuff}after{stuff}after{stuff}after{stuff}after{stuff}after{stuff}after{
+      stuff
+    }after
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+this_really_should_split_across_lines = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    before
+    {stuff}
+    after
+    {stuff}
+    after
+    {stuff}
+    after
+    {stuff}
+    after
+    {stuff}
+    after
+    {stuff}
+    after
+    {stuff}
+    after
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="break-jsx-in-arrow-functions-in-jsx-expressions-4601-by-duailibe"></a><a href="#break-jsx-in-arrow-functions-in-jsx-expressions-4601-by-duailibe" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Break JSX in arrow functions in JSX expressions (<a href="https://github.com/prettier/prettier/pull/4601">#4601</a> by <a href="https://github.com/duailibe">@duailibe</a>)</h4>
+<p>In previous versions, JSX in arrow functions in JSX expressions followed the general fit-or-break rule,
+but it’s less readable when iterating over an array.
+Prettier 1.14 forces these arrow functions to break, improving readability.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">// Input</span>
+<span class="hljs-keyword">const</span> UsersList = <span class="hljs-function">(<span class="hljs-params">{ users }</span>) =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Users list<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      {users.map(user =&gt; (
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{user.id}</span>&gt;</span>{user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      ))}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+)
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-keyword">const</span> UsersList = <span class="hljs-function">(<span class="hljs-params">{ users }</span>) =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Users list<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{users.map(user =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{user.id}</span>&gt;</span>{user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>)}<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+);
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-keyword">const</span> UsersList = <span class="hljs-function">(<span class="hljs-params">{ users }</span>) =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Users list<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      {users.map(user =&gt; (
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{user.id}</span>&gt;</span>{user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      ))}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="typescript"></a><a href="#typescript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-for-typescript-30-4625-4757-by-ikatyang"></a><a href="#support-for-typescript-30-4625-4757-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support for TypeScript 3.0 (<a href="https://github.com/prettier/prettier/pull/4625">#4625</a>, <a href="https://github.com/prettier/prettier/pull/4757">#4757</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>A few new features that include new syntax are added in the upcoming TypeScript 3.0:
+the <a href="https://github.com/Microsoft/TypeScript/pull/24439"><code>unknown</code> type</a> and
+<a href="https://github.com/Microsoft/TypeScript/pull/24897">tuples in rest parameters and spread expressions</a>.
+Prettier 1.14 adds support for them so you can format them when TypeScript 3.0 is released.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// UnknownType</span>
+<span class="hljs-keyword">const</span> json: unknown = <span class="hljs-built_in">JSON</span>.parse(jsonText);
+
+<span class="hljs-comment">// RestType</span>
+<span class="hljs-keyword">type</span> Foo = [<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>];
+<span class="hljs-keyword">type</span> Bar = [<span class="hljs-built_in">boolean</span>, ...Foo];
+
+<span class="hljs-comment">// OptionalType</span>
+<span class="hljs-keyword">type</span> Baz = [<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>?];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="json"></a><a href="#json" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSON</h3>
+<h4><a class="anchor" aria-hidden="true" id="do-not-put-values-on-a-separate-line-from-the-key-4852-by-ikatyang"></a><a href="#do-not-put-values-on-a-separate-line-from-the-key-4852-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Do not put values on a separate line from the key (<a href="https://github.com/prettier/prettier/pull/4852">#4852</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Putting long values on new rows is the core feature of Prettier,
+but we found that it doesn’t improve readability for objects with long string values inside JSON files.
+Prettier 1.14 will not move an object’s string value regardless if it fits the print width or not.</p>
+<pre><code class="hljs css language-json5"><span class="hljs-comment">// Input</span>
+{
+  <span class="hljs-string">"description"</span>: <span class="hljs-string">"a long long long long long long long long long long long long long long long long long paragraph"</span>
+}
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+{
+  <span class="hljs-string">"description"</span>:
+    <span class="hljs-string">"a long long long long long long long long long long long long long long long long long paragraph"</span>
+}
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+{
+  <span class="hljs-string">"description"</span>: <span class="hljs-string">"a long long long long long long long long long long long long long long long long long paragraph"</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="markdown"></a><a href="#markdown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Markdown</h3>
+<h4><a class="anchor" aria-hidden="true" id="only-align-lists-if-they-re-already-aligned-4893-by-ikatyang"></a><a href="#only-align-lists-if-they-re-already-aligned-4893-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Only align lists if they’re already aligned (<a href="https://github.com/prettier/prettier/pull/4893">#4893</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Previously, we always align lists for <a href="https://prettier.io/blog/2018/02/26/1.11.0.html#respect-tabwidth-for-list-items-3990-by-ikatyang">better indenting experience and
+as a workaround for indented codeblock mis-parsing</a>,
+but this introduced double spaces in front of ordered lists, which is not common in markdown.
+In Prettier 1.14, we only align lists in the following cases:</p>
+<ul>
+<li>They’re already aligned.</li>
+<li>There’re at least two spaces in front of the first list item.</li>
+<li>There’s an indented codeblock inside of it.</li>
+</ul>
+<p>Input:</p>
+<pre><code class="hljs css language-md"><span class="hljs-bullet">1.  </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">1.   </span>123
+<span class="hljs-bullet">1. </span>123
+
+---
+
+<span class="hljs-bullet">11. </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">11. </span>123
+<span class="hljs-bullet">1. </span>123
+
+---
+
+<span class="hljs-bullet">1. </span>123
+<span class="hljs-bullet">1. </span>123
+</code></pre>
+<p>Output: (Prettier 1.13)</p>
+<pre><code class="hljs css language-md"><span class="hljs-bullet">1.  </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">1.  </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">11. </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">11. </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">1.  </span>123
+<span class="hljs-bullet">1.  </span>123
+</code></pre>
+<p>Output: (Prettier 1.14)</p>
+<pre><code class="hljs css language-md"><span class="hljs-bullet">1.  </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">1.  </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">11. </span>123
+<span class="hljs-bullet">1.  </span>123
+
+---
+
+<span class="hljs-bullet">11. </span>123
+<span class="hljs-bullet">1. </span>123
+
+---
+
+<span class="hljs-bullet">1. </span>123
+<span class="hljs-bullet">1. </span>123
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="performance"></a><a href="#performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance</h3>
+<h4><a class="anchor" aria-hidden="true" id="performance-improvement-on-big-files-4790-4848-by-sompylasar"></a><a href="#performance-improvement-on-big-files-4790-4848-by-sompylasar" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance improvement on big files (<a href="https://github.com/prettier/prettier/pull/4790">#4790</a>, <a href="https://github.com/prettier/prettier/pull/4848">#4848</a> by <a href="https://github.com/sompylasar">@sompylasar</a>)</h4>
+<p>The core feature of Prettier is to wrap lines when they go past the print width,
+and to do this we need to calculate the visual width of every character.
+The easiest way to count them is by using JavaScript’s <code>String#length</code> property
+but some non-ASCII characters like CJK characters have widths larger than a Latin characer.
+As a workaround, we replaced those 2-char-wide characters with 2 spaces before calculating the string’s length.
+This works fine but it also slows down Prettier because we have to run the replacement on every token.
+In Prettier 1.14, we check if the string contains only ASCII characters
+so we don’t need to perform unnecessary string replacement.
+This results in a <strong>20% speed-up</strong> on large files.</p>
+<h2><a class="anchor" aria-hidden="true" id="other-changes"></a><a href="#other-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other changes</h2>
+<h3><a class="anchor" aria-hidden="true" id="api-cli"></a><a href="#api-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API/CLI</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-relative-paths-for-plugins-and-pluginsearchdirs-in-config-files-4667-by-ikatyang"></a><a href="#support-relative-paths-for-plugins-and-pluginsearchdirs-in-config-files-4667-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support relative paths for <code>plugins</code> and <code>pluginSearchDirs</code> in config files (<a href="https://github.com/prettier/prettier/pull/4667">#4667</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>In Prettier 1.13, we introduced a new <code>pluginSearchDirs</code> option that changes where Prettier looks for plugins.
+It worked well when specified in the CLI since it was always relative to the current directory,
+but relative paths didn’t work in config files.
+In Prettier 1.14, relative paths for <code>pluginSearchDirs</code> and <code>plugins</code> in config files are now supported.</p>
+<h4><a class="anchor" aria-hidden="true" id="do-not-throw-error-if-prettier-installed-in-a-directory-not-named-prettier-4706-by-asottile"></a><a href="#do-not-throw-error-if-prettier-installed-in-a-directory-not-named-prettier-4706-by-asottile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Do not throw error if <code>prettier</code> installed in a directory not named <code>prettier</code> (<a href="https://github.com/prettier/prettier/pull/4706">#4706</a> by <a href="https://github.com/asottile">@asottile</a>)</h4>
+<p>We added support for globally installed plugins in Prettier 1.13 by searching up the directory tree to
+find the nearest <code>node_modules</code> from <code>prettier</code>. We assumed that there would always be a <code>prettier</code> directory
+which caused Prettier to crash if it was in a differently-named directory.
+We changed our searching logic in Prettier 1.14 so you should now be able to rename the <code>prettier</code> directory if you need to
+(for example if publishing a fork to npm).</p>
+<h4><a class="anchor" aria-hidden="true" id="support-filepath-in-browser-4721-by-ikatyang"></a><a href="#support-filepath-in-browser-4721-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support <code>filepath</code> in browser (<a href="https://github.com/prettier/prettier/pull/4721">#4721</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>In Prettier 1.13, we added first-class support for running Prettier in the browser, but the only way to
+choose which parser to use was via the <code>parser</code> option. Prettier 1.14 adds support for the <code>filepath</code> option in the browser
+API, which will allow Prettier to infer which parser to use, just like the it can with the Node.js API. This
+should be especially useful for web editor applications!</p>
+<h4><a class="anchor" aria-hidden="true" id="expose-ispreviouslineempty-to-plugins-4748-by-warrenseine"></a><a href="#expose-ispreviouslineempty-to-plugins-4748-by-warrenseine" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expose <code>isPreviousLineEmpty</code> to plugins (<a href="https://github.com/prettier/prettier/pull/4748">#4748</a> by <a href="https://github.com/warrenseine">@warrenseine</a>)</h4>
+<p>Previously, we exposed <code>isNextLineEmpty</code> to plugins but not <code>isPreviousLineEmpty</code>.
+Prettier 1.14 exposes it, because it can be useful for some scenarios like directives in C#.</p>
+<h3><a class="anchor" aria-hidden="true" id="javascript-1"></a><a href="#javascript-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-bigint-literals-4697-by-ikatyang"></a><a href="#support-bigint-literals-4697-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support BigInt literals (<a href="https://github.com/prettier/prettier/pull/4697">#4697</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p><a href="https://github.com/tc39/proposal-bigint">BigInt</a> literals are now supported in the default <code>babylon</code> parser.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> bigInt = <span class="hljs-number">1</span>n;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="support-throw-expressions-4695-by-vojtechstep"></a><a href="#support-throw-expressions-4695-by-vojtechstep" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support <code>throw</code> expressions (<a href="https://github.com/prettier/prettier/pull/4695">#4695</a> by <a href="https://github.com/VojtechStep">@VojtechStep</a>)</h4>
+<p><a href="https://github.com/tc39/proposal-throw-expressions">Throw expressions</a> are now supported in the default <code>babylon</code> parser.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> assert = <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x || <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'...'</span>);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="always-expand-the-first-argument-if-the-second-argument-is-also-a-call-expression-4657-by-duailibe"></a><a href="#always-expand-the-first-argument-if-the-second-argument-is-also-a-call-expression-4657-by-duailibe" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Always expand the first argument if the second argument is also a call expression (<a href="https://github.com/prettier/prettier/pull/4657">#4657</a> by <a href="https://github.com/duailibe">@duailibe</a>)</h4>
+<p>Previously, we had a special case to not break function calls
+if there were only 2 parameters passed and the first parameter was a function.
+This worked well, but if the second parameter was also a function, it didn’t look very good.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Input</span>
+somePromise.then(<span class="hljs-function">(<span class="hljs-params">args</span>) =&gt;</span> {
+  <span class="hljs-keyword">this</span>.props.receiveFavoritesActions(id, [].concat(...args));
+}, ({ isCanceled }) =&gt; !isCanceled &amp;&amp; logger.warn(<span class="hljs-string">`Error getting actions for the product: <span class="hljs-subst">${id}</span>`</span>));
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+somePromise.then(<span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
+  <span class="hljs-keyword">this</span>.props.receiveFavoritesActions(id, [].concat(...args));
+}, ({ isCanceled }) =&gt; !isCanceled &amp;&amp; logger.warn(<span class="hljs-string">`Error getting actions for the product: <span class="hljs-subst">${id}</span>`</span>));
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+somePromise.then(
+  <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
+    <span class="hljs-keyword">this</span>.props.receiveFavoritesActions(id, [].concat(...args));
+  },
+  ({ isCanceled }) =&gt;
+    !isCanceled &amp;&amp; logger.warn(<span class="hljs-string">`Error getting actions for the product: <span class="hljs-subst">${id}</span>`</span>)
+);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="add-parens-for-await-in-bind-4778-by-ikatyang"></a><a href="#add-parens-for-await-in-bind-4778-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add parens for await in bind (<a href="https://github.com/prettier/prettier/pull/4778">#4778</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Previously, Prettier wrongly removed the necessary parentheses for <code>await</code> in the experimental bind syntax,
+causing its meaning to be change. Prettier 1.14 now preserves the parentheses correctly.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Input</span>
+<span class="hljs-keyword">const</span> doBothThings = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> request = doAsyncThing();
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">await</span> request)::doSyncThing();
+};
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-keyword">const</span> doBothThings = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> request = doAsyncThing();
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> request::doSyncThing(); <span class="hljs-comment">// means `await (request::doSyncThing)`</span>
+};
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-keyword">const</span> doBothThings = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> request = doAsyncThing();
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">await</span> request)::doSyncThing();
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="allow-top-level-super-and-await-4823-by-ikatyang"></a><a href="#allow-top-level-super-and-await-4823-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Allow top level <code>super</code> and <code>await</code> (<a href="https://github.com/prettier/prettier/pull/4823">#4823</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p><code>super</code> and <code>await</code> are not allowed to be in places other than classes and async functions, respectively,
+but our <a href="https://prettier.io/docs/en/options.html#range">range format</a> option didn’t quite work properly when selecting the contents of a function.
+Prettier 1.14 allows them to be everywhere.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">super</span>();
+
+<span class="hljs-keyword">await</span> doSomething();
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="blacklist-this-and-super-in-functional-composition-heuristics-4836-by-princed"></a><a href="#blacklist-this-and-super-in-functional-composition-heuristics-4836-by-princed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Blacklist <code>this</code> and <code>super</code> in functional composition heuristics (<a href="https://github.com/prettier/prettier/pull/4836">#4836</a> by <a href="https://github.com/princed">@princed</a>)</h4>
+<p>In Prettier 1.13, we improved the formatting for functional composition functions (e.g., <code>pipe</code>, <code>compose</code>, etc.)
+by putting their parameters on their own line, but this introduced false positives for functions with the same name in classes.
+Prettier 1.14 blacklists <code>this</code> and <code>super</code> in functional composition heuristics.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Input</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">X</span> </span>{
+  x() {
+    <span class="hljs-keyword">this</span>.compose(a(), b);
+    <span class="hljs-keyword">super</span>.compose(a(), b);
+  }
+}
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">X</span> </span>{
+  x() {
+    <span class="hljs-keyword">this</span>.compose(
+      a(),
+      b
+    );
+    <span class="hljs-keyword">super</span>.compose(
+      a(),
+      b
+    );
+  }
+}
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">X</span> </span>{
+  x() {
+    <span class="hljs-keyword">this</span>.compose(a(), b);
+    <span class="hljs-keyword">super</span>.compose(a(), b);
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="typescript-1"></a><a href="#typescript-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-importmeta-4762-by-ikatyang"></a><a href="#support-importmeta-4762-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support <code>import.meta</code> (<a href="https://github.com/prettier/prettier/pull/4762">#4762</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>In Prettier 1.13, the version of the TypeScript parser we used did not support parsing <code>import.meta</code> syntax.
+We updated our TypeScript parser in Prettier 1.14 so they are now parsed and formatted correctly.</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">import</span>.meta.url);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="optional-property-with-stringliteral-key-in-class-4762-by-ikatyang"></a><a href="#optional-property-with-stringliteral-key-in-class-4762-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional property with StringLiteral key in class (<a href="https://github.com/prettier/prettier/pull/4762">#4762</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>In the prior version, the <code>?</code> in an optional property with a string literal as the key was wrongly removed.
+We fixed this bug in Prettier 1.14 so it won’t be removed.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// Input</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ClassExample {
+  <span class="hljs-string">"a-prop"</span>?: <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ClassExample {
+  <span class="hljs-string">"a-prop"</span>: <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ClassExample {
+  <span class="hljs-string">"a-prop"</span>?: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="throw-error-on-multiple-super-classes-in-class-4762-by-ikatyang"></a><a href="#throw-error-on-multiple-super-classes-in-class-4762-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Throw error on multiple super classes in class (<a href="https://github.com/prettier/prettier/pull/4762">#4762</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Classes are only allowed to have one parent class
+but the TypeScript AST allows for multiple since the <code>extends</code> clause
+has the same structure internally as the <code>implements</code> clause.
+Previously, any extra super classes were silently dropped during printing,
+which may have caused confusion after formatting.
+In Prettier 1.14, they are now marked as syntax errors instead.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// Input</span>
+<span class="hljs-keyword">class</span> Foo <span class="hljs-keyword">extends</span> BarComponent, BazService, QuuxProvider {}
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-keyword">class</span> Foo <span class="hljs-keyword">extends</span> BarComponent {}
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-comment">/*
+  SyntaxError: Classes can only extend a single class.
+*/</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="support-jsx-spread-child-4885-by-ikatyang"></a><a href="#support-jsx-spread-child-4885-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support JSX spread child (<a href="https://github.com/prettier/prettier/pull/4885">#4885</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Previously, the <code>...</code> in children spread in JSX expressions were wrongly removed.
+We fixed this issue in Prettier 1.14.</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-comment">// Input</span>
+<span class="hljs-keyword">const</span> x = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{...[0]}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+
+<span class="hljs-comment">// Output (Prettier 1.13)</span>
+<span class="hljs-keyword">const</span> x = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{[0]}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+
+<span class="hljs-comment">// Output (Prettier 1.14)</span>
+<span class="hljs-keyword">const</span> x = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{...[0]}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="flow"></a><a href="#flow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Flow</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-jsflow-extension-4777-by-ikatyang"></a><a href="#support-jsflow-extension-4777-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support <code>.js.flow</code> extension (<a href="https://github.com/prettier/prettier/pull/4777">#4777</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p><a href="https://flow.org/en/docs/libdefs/creation/#toc-declaring-a-module"><code>.js.flow</code></a>
+is the extension for Flow declaration files but previously we didn’t recognize it.
+In Prettier 1.14, they should be picked up automatically
+so you don’t need to add overrides for them in config files.</p>
+<h3><a class="anchor" aria-hidden="true" id="css-less-scss"></a><a href="#css-less-scss" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CSS/Less/SCSS</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle-newline-between-front-matter-and-comment-correctly-4701-by-evilebottnawi"></a><a href="#handle-newline-between-front-matter-and-comment-correctly-4701-by-evilebottnawi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Handle newline between front-matter and comment correctly (<a href="https://github.com/prettier/prettier/pull/4701">#4701</a> by <a href="https://github.com/evilebottnawi">@evilebottnawi</a>)</h4>
+<p>Multiple newlines between front matter and a CSS comment were replaced with a space in Prettier 1.13.
+In Prettier 1.14, we print a newline between them instead.</p>
+<pre><code class="hljs css language-css"><span class="hljs-comment">/* Input */</span>
+<span class="hljs-selector-tag">---</span>
+<span class="hljs-selector-tag">key</span>: <span class="hljs-selector-tag">value</span>
+<span class="hljs-selector-tag">---</span>
+
+<span class="hljs-comment">/* comment */</span>
+<span class="hljs-selector-class">.class</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+
+<span class="hljs-comment">/* Output (Prettier 1.13) */</span>
+<span class="hljs-selector-tag">---</span>
+<span class="hljs-selector-tag">key</span>: <span class="hljs-selector-tag">value</span>
+<span class="hljs-selector-tag">---</span>
+ <span class="hljs-comment">/* comment */</span>
+<span class="hljs-selector-class">.class</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+
+<span class="hljs-comment">/* Output (Prettier 1.14) */</span>
+<span class="hljs-selector-tag">---</span>
+<span class="hljs-selector-tag">key</span>: <span class="hljs-selector-tag">value</span>
+<span class="hljs-selector-tag">---</span>
+
+<span class="hljs-comment">/* comment */</span>
+<span class="hljs-selector-class">.class</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="support-at-rule-ends-with-right-curly-bracket-4733-by-davidgomes"></a><a href="#support-at-rule-ends-with-right-curly-bracket-4733-by-davidgomes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support at-rule ends with right curly bracket (<a href="https://github.com/prettier/prettier/pull/4733">#4733</a> by <a href="https://github.com/davidgomes">@davidgomes</a>)</h4>
+<p>In the prior version, at-rules that ended with <code>}</code> were not parsed correctly.
+Prettier 1.14 now correctly recognizes and formats them.</p>
+<pre><code class="hljs css language-scss"><span class="hljs-comment">/* Input */</span>
+@<span class="hljs-keyword">mixin</span> placeholder {
+    &amp;::placeholder {@content}
+}
+
+/* Output (Prettier <span class="hljs-number">1.13</span>) */
+/*
+  SyntaxError: CssSyntaxError Unclosed block
+*/
+
+/* Output (Prettier <span class="hljs-number">1.14</span>) */
+@mixin placeholder {
+  &amp;::placeholder {
+    @content;
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="markdown-1"></a><a href="#markdown-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Markdown</h3>
+<h4><a class="anchor" aria-hidden="true" id="preserve-email-autolink-4740-by-ikatyang"></a><a href="#preserve-email-autolink-4740-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preserve email autolink (<a href="https://github.com/prettier/prettier/pull/4740">#4740</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Autolinks are formatted as their url in the prior version, which is fine.
+But there’s a special case for email links that they’ll be resolved as <code>mailto:</code> links.
+In Prettier 1.14, email autolinks are preserved.</p>
+<pre><code class="hljs css language-md"><span class="xml"><span class="hljs-comment">&lt;!-- Input --&gt;</span></span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">hello@example.com</span>&gt;</span></span>
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.13) --&gt;</span></span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">mailto:hello@example.com</span>&gt;</span></span>
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.14) --&gt;</span></span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">hello@example.com</span>&gt;</span></span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="do-not-require-space-after-markdown-block-language-name-4783-by-kachkaev"></a><a href="#do-not-require-space-after-markdown-block-language-name-4783-by-kachkaev" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Do not require space after markdown block language name (<a href="https://github.com/prettier/prettier/pull/4783">#4783</a> by <a href="https://github.com/kachkaev">@kachkaev</a>)</h4>
+<p>In Prettier 1.12, we added the support for fenced codeblock lang followed by attributes,
+which requires them to be separated by whitespaces.
+But this introduced the inconsistency for codeblock highlighting in Atom that
+codeblocks are hightlighted but we do not format them.
+We updated our detection logic in Prettier 1.14 so they should behave the same now.</p>
+<pre><code class="hljs css language-md"><span class="xml"><span class="hljs-comment">&lt;!-- Input --&gt;</span></span>
+<span class="hljs-code">```js{something=something}
+const x   =   1;
+```</span>
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.13) --&gt;</span></span>
+<span class="hljs-code">```js{something=something}
+const x   =   1;
+```</span>
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.14) --&gt;</span></span>
+<span class="hljs-code">```js{something=something}
+const x = 1;
+```</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="use-language-aliases-to-find-parser-for-markdown-codeblocks-4734-by-ikatyang"></a><a href="#use-language-aliases-to-find-parser-for-markdown-codeblocks-4734-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use language aliases to find parser for markdown codeblocks (<a href="https://github.com/prettier/prettier/pull/4734">#4734</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Previously, we used the language <code>name</code> and <code>extensions</code> to determine which parser to use for codeblock formatting,
+but we found that it’s impossible to format <code>JSON with Comments</code> codeblocks and keep syntax highlighter working at the same time
+since they share the same <code>.json</code> extension with <code>JSON</code> and the comment syntax highlighting is only available in <code>JSON5</code>.
+We added the support for using the language <code>aliases</code> to find parser in Prettier 1.14
+so you should be able to use <code>jsonc</code> to format and trigger syntax highlighting for <code>JSON with Comments</code> codeblocks.</p>
+<pre><code class="hljs css language-md"><span class="xml"><span class="hljs-comment">&lt;!-- Input --&gt;</span></span>
+<span class="hljs-code">```jsonc
+// comment
+{"a":1}
+```</span>
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.13) --&gt;</span></span>
+<span class="hljs-code">```jsonc
+// comment
+{"a":1}
+```</span>
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.14) --&gt;</span></span>
+<span class="hljs-code">```jsonc
+// comment
+{ "a": 1 }
+```</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="preserve-entity-for-encoded-character-if-its-code-point-is-greater-than-u-ffff-4832-by-ikatyang"></a><a href="#preserve-entity-for-encoded-character-if-its-code-point-is-greater-than-u-ffff-4832-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preserve entity for encoded character if its code point is greater than U+FFFF (<a href="https://github.com/prettier/prettier/pull/4832">#4832</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>The markdown parser we use (<code>remark</code>) parses every encoded character into a single AST node
+so that we’re able to restore the encoded character by detecting if the value in the AST node is in length of 1.
+But there’s an exception that a single character can be in length of 2 if its code point is greater than 0xffff
+since JavaScript uses UTF-16 (2 bytes) to encode strings.
+Prettier 1.14 correctly recognizes these characters so they won’t be transformed into the literal character.</p>
+<pre><code class="hljs css language-md"><span class="xml"><span class="hljs-comment">&lt;!-- Input --&gt;</span></span>
+&amp;#x1F609;
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.13) --&gt;</span></span>
+😉
+
+<span class="xml"><span class="hljs-comment">&lt;!-- Output (Prettier 1.14) --&gt;</span></span>
+&amp;#x1F609;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="vue"></a><a href="#vue" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vue</h3>
+<h4><a class="anchor" aria-hidden="true" id="support-range-format-for-vue-files-4868-by-ikatyang"></a><a href="#support-range-format-for-vue-files-4868-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support range format for Vue files (<a href="https://github.com/prettier/prettier/pull/4868">#4868</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Previously, <a href="https://prettier.io/docs/en/options.html#range">range formatting</a> was not available in Vue,
+but Prettier 1.14 adds support for it.</p>
+<h3><a class="anchor" aria-hidden="true" id="graphql"></a><a href="#graphql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GraphQL</h3>
+<h4><a class="anchor" aria-hidden="true" id="preserve-linebreak-in-non-block-stringvalue-4808-by-ikatyang"></a><a href="#preserve-linebreak-in-non-block-stringvalue-4808-by-ikatyang" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preserve linebreak in non-block stringValue (<a href="https://github.com/prettier/prettier/pull/4808">#4808</a> by <a href="https://github.com/ikatyang">@ikatyang</a>)</h4>
+<p>Non-block string values are only allowed to be in a single line
+but Prettier 1.13 wrongly transformed the escaped <code>\n</code> into a real newline.
+Prettier 1.14 now correctly prints <code>\n</code>.</p>
+<pre><code class="hljs css language-gql"># <span class="hljs-selector-tag">Input</span>
+{
+  <span class="hljs-selector-tag">foo</span>(<span class="hljs-attribute">input</span>: {<span class="hljs-attribute">multiline</span>: <span class="hljs-string">"ab\ncd"</span>}) { <span class="hljs-selector-tag">id</span> }
+}
+
+# <span class="hljs-selector-tag">Output</span> (Prettier <span class="hljs-number">1.13</span>)
+{
+  <span class="hljs-selector-tag">foo</span>(<span class="hljs-attribute">input</span>: { <span class="hljs-attribute">multiline</span>: "ab
+cd" }) {
+    <span class="hljs-selector-tag">id</span>
+  }
+}
+
+# <span class="hljs-selector-tag">Output</span> (Prettier <span class="hljs-number">1.14</span>)
+{
+  <span class="hljs-selector-tag">foo</span>(<span class="hljs-attribute">input</span>: { <span class="hljs-attribute">multiline</span>: <span class="hljs-string">"ab\ncd"</span> }) {
+    <span class="hljs-selector-tag">id</span>
+  }
+}
+</code></pre>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Prettier 1.14: YAML Support" data-url="https://prettier.io/blog/2018/07/29/1.14.0.html" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#highlights">Highlights</a><ul class="toc-headings"><li><a href="#yaml">YAML</a></li><li><a href="#front-matter">Front Matter</a></li><li><a href="#pragma">Pragma</a></li><li><a href="#javascript">JavaScript</a></li><li><a href="#typescript">TypeScript</a></li><li><a href="#json">JSON</a></li><li><a href="#markdown">Markdown</a></li><li><a href="#performance">Performance</a></li></ul></li><li><a href="#other-changes">Other changes</a><ul class="toc-headings"><li><a href="#api-cli">API/CLI</a></li><li><a href="#javascript-1">JavaScript</a></li><li><a href="#typescript-1">TypeScript</a></li><li><a href="#flow">Flow</a></li><li><a href="#css-less-scss">CSS/Less/SCSS</a></li><li><a href="#markdown-1">Markdown</a></li><li><a href="#vue">Vue</a></li><li><a href="#graphql">GraphQL</a></li></ul></li></ul></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/icon.png" alt="Prettier"/></a><div><h5>Docs</h5><a href="/docs/en/index.html">About</a><a href="/docs/en/install.html">Usage</a></div><div><h5>Community</h5><a href="/en/users">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/prettier" target="_blank" rel="noopener noreferrer">Stack Overflow</a><a href="https://gitter.im/jlongster/prettier">Chat on Gitter</a><a href="https://twitter.com/PrettierCode">@PrettierCode on Twitter</a><object type="image/svg+xml" data="https://img.shields.io/twitter/follow/prettiercode.svg?label=Follow+Prettier&amp;style=social"><a href="https://twitter.com/intent/follow?screen_name=prettiercode"><img alt="Follow Prettier on Twitter" src="https://img.shields.io/twitter/follow/prettiercode.png?label=Follow+Prettier&amp;style=social"/></a></object></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/prettier/prettier">GitHub</a><a href="https://github.com/prettier/prettier/issues">Issues</a><a class="github-button" href="https://github.com/prettier/prettier" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'undefined',
+                indexName: 'prettier',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

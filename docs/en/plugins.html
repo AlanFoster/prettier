@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Plugins (Beta) · Prettier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;in-beta&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#in-beta&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;IN BETA&lt;/h2&gt;
+"/><meta name="docsearch:version" content="stable"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Plugins (Beta) · Prettier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://prettier.io/index.html"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;in-beta&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#in-beta&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;IN BETA&lt;/h2&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/icon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://prettier.io/blog/atom.xml" title="Prettier Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://prettier.io/blog/feed.xml" title="Prettier Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-111350464-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="//unpkg.com/@sandhose/prettier-animated-logo@1.0.3/dist/wide.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/icon.png" alt="Prettier"/><h2 class="headerTitleWithLogo">Prettier</h2></a><a href="/versions.html"><h3>stable</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/playground/" target="_self">Playground</a></li><li class="siteNavGroupActive"><a href="/docs/en/index.html" target="_self">About</a></li><li class="siteNavGroupActive"><a href="/docs/en/install.html" target="_self">Usage</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/prettier/prettier" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Usage</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">About</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/index.html">What is Prettier?</a></li><li class="navListItem"><a class="navItem" href="/docs/en/why-prettier.html">Why Prettier?</a></li><li class="navListItem"><a class="navItem" href="/docs/en/comparison.html">Prettier vs. Linters</a></li><li class="navListItem"><a class="navItem" href="/docs/en/option-philosophy.html">Option Philosophy</a></li><li class="navListItem"><a class="navItem" href="/docs/en/rationale.html">Rationale</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Usage</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/install.html">Install</a></li><li class="navListItem"><a class="navItem" href="/docs/en/cli.html">CLI</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api.html">API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/browser.html">Browser</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/plugins.html">Plugins (Beta)</a></li><li class="navListItem"><a class="navItem" href="/docs/en/precommit.html">Pre-commit Hook</a></li><li class="navListItem"><a class="navItem" href="/docs/en/watching-files.html">Watching For Changes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/eslint.html">Integrating with ESLint</a></li><li class="navListItem"><a class="navItem" href="/docs/en/ignore.html">Ignoring Code</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Configuring Prettier</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration.html">Configuration File</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Editors</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/editors.html">Editor Integration</a></li><li class="navListItem"><a class="navItem" href="/docs/en/webstorm.html">WebStorm Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/en/vim.html">Vim Setup</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Misc</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/technical-details.html">Technical Details</a></li><li class="navListItem"><a class="navItem" href="/docs/en/related-projects.html">Related Projects</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/prettier/prettier/edit/master/docs/plugins.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Plugins (Beta)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="in-beta"></a><a href="#in-beta" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>IN BETA</h2>
+<blockquote>
+<p>The plugin API is in a <strong>beta</strong> state as of Prettier 1.10 and the API may change in the next release!</p>
+</blockquote>
+<p>Plugins are ways of adding new languages to Prettier. Prettier's own implementations of all languages are expressed using the plugin API. The core <code>prettier</code> package contains JavaScript and other web-focused languages built in. For additional languages you'll need to install a plugin.</p>
+<h2><a class="anchor" aria-hidden="true" id="using-plugins"></a><a href="#using-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Plugins</h2>
+<p>Plugins are automatically loaded if you have them installed in the same <code>node_modules</code> directory where <code>prettier</code> is located. Plugin package names must start with <code>@prettier/plugin-</code> or <code>prettier-plugin-</code> to be registered.</p>
+<p>When plugins cannot be found automatically, you can load them with:</p>
+<ul>
+<li><p>The <a href="/docs/en/cli.html">CLI</a>, via the <code>--plugin</code> and <code>--plugin-search-dir</code>:</p>
+<pre><code class="hljs css language-bash">prettier --write main.foo --plugin-search-dir=./dir-with-plugins --plugin=./foo-plugin
+</code></pre>
+<blockquote>
+<p>Tip: You can set <code>--plugin</code> or <code>--plugin-search-dir</code> options multiple times.</p>
+</blockquote></li>
+<li><p>Or the <a href="/docs/en/api.html">API</a>, via the <code>plugins</code> and <code>pluginSearchDirs</code> options:</p>
+<pre><code class="hljs css language-js">prettier.format(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">parser</span>: <span class="hljs-string">"foo"</span>,
+  <span class="hljs-attr">pluginSearchDirs</span>: [<span class="hljs-string">"./dir-with-plugins"</span>],
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"./foo-plugin"</span>]
+});
+</code></pre></li>
+</ul>
+<p>Prettier expects each of <code>pluginSearchDirs</code> to contain <code>node_modules</code> subdirectory, where <code>@prettier/plugin-*</code> and <code>prettier-plugin-*</code> will be searched. For instance, this can be your project directory or the location of global npm modules.</p>
+<p>Providing at least one path to <code>--plugin-search-dir</code>/<code>pluginSearchDirs</code> turns off plugin autoloading in the default directory (i.e. <code>node_modules</code> above <code>prettier</code> binary).</p>
+<h2><a class="anchor" aria-hidden="true" id="official-plugins"></a><a href="#official-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Official Plugins</h2>
+<ul>
+<li><a href="https://github.com/prettier/plugin-python"><code>@prettier/plugin-python</code></a></li>
+<li><a href="https://github.com/prettier/plugin-php"><code>@prettier/plugin-php</code></a></li>
+<li><a href="https://github.com/prettier/plugin-ruby"><code>@prettier/plugin-ruby</code></a></li>
+<li><a href="https://github.com/prettier/plugin-swift"><code>@prettier/plugin-swift</code></a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="community-plugins"></a><a href="#community-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Community Plugins</h2>
+<ul>
+<li><a href="https://github.com/dangmai/prettier-plugin-apex"><code>prettier-plugin-apex</code></a> by <a href="https://github.com/dangmai"><strong>@dangmai</strong></a></li>
+<li><a href="https://github.com/gicentre/prettier-plugin-elm"><code>prettier-plugin-elm</code></a> by <a href="https://github.com/gicentre"><strong>@giCentre</strong></a></li>
+<li><a href="https://github.com/jhipster/prettier-java"><code>prettier-plugin-java</code></a> by <a href="https://github.com/jhipster"><strong>@JHipster</strong></a></li>
+<li><a href="https://github.com/benjie/prettier-plugin-pg"><code>prettier-plugin-pg</code></a> by <a href="https://github.com/benjie"><strong>@benjie</strong></a></li>
+<li><a href="https://github.com/iamsolankiamit/prettier-ruby"><code>prettier-plugin-ruby</code></a> by <a href="https://github.com/iamsolankiamit"><strong>@iamsolankiamit</strong></a></li>
+<li><a href="https://github.com/prettier-solidity/prettier-plugin-solidity"><code>prettier-plugin-solidity</code></a> by <a href="https://github.com/mattiaerre"><strong>@mattiaerre</strong></a></li>
+<li><a href="https://github.com/bd82/toml-tools/tree/master/packages/prettier-plugin-toml"><code>prettier-plugin-toml</code></a> by <a href="https://github.com/bd82"><strong>@bd82</strong></a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="developing-plugins"></a><a href="#developing-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Developing Plugins</h2>
+<p>Prettier plugins are regular JavaScript modules with five exports:</p>
+<ul>
+<li><code>languages</code></li>
+<li><code>parsers</code></li>
+<li><code>printers</code></li>
+<li><code>options</code></li>
+<li><code>defaultOptions</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="languages"></a><a href="#languages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>languages</code></h3>
+<p>Languages is an array of language definitions that your plugin will contribute to Prettier. It can include all of the fields specified in <a href="/docs/en/api.html#prettiergetsupportinfo-version"><code>prettier.getSupportInfo()</code></a>.</p>
+<p>It <strong>must</strong> include <code>name</code> and <code>parsers</code>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> languages = [
+  {
+    <span class="hljs-comment">// The language name</span>
+    name: <span class="hljs-string">"InterpretedDanceScript"</span>,
+    <span class="hljs-comment">// Parsers that can parse this language.</span>
+    <span class="hljs-comment">// This can be built-in parsers, or parsers you have contributed via this plugin.</span>
+    parsers: [<span class="hljs-string">"dance-parse"</span>]
+  }
+];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="parsers"></a><a href="#parsers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>parsers</code></h3>
+<p>Parsers convert code as a string into an <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a>.</p>
+<p>The key must match the name in the <code>parsers</code> array from <code>languages</code>. The value contains a parse function, an AST format name, and two location extraction functions (<code>locStart</code> and <code>locEnd</code>).</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> parsers = {
+  <span class="hljs-string">"dance-parse"</span>: {
+    parse,
+    <span class="hljs-comment">// The name of the AST that</span>
+    astFormat: <span class="hljs-string">"dance-ast"</span>,
+    hasPragma,
+    locStart,
+    locEnd,
+    preprocess
+  }
+};
+</code></pre>
+<p>The signature of the <code>parse</code> function is:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parse</span>(<span class="hljs-params">text: <span class="hljs-built_in">string</span>, parsers: object, options: object</span>): <span class="hljs-title">AST</span></span>;
+</code></pre>
+<p>The location extraction functions (<code>locStart</code> and <code>locEnd</code>) return the starting and ending locations of a given AST node:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">locStart</span>(<span class="hljs-params">node: object</span>): <span class="hljs-title">number</span></span>;
+</code></pre>
+<p><em>(Optional)</em> The pragma detection function (<code>hasPragma</code>) should return if the text contains the pragma comment.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasPragma</span>(<span class="hljs-params">text: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">boolean</span></span>;
+</code></pre>
+<p><em>(Optional)</em> The preprocess function can process the input text before passing into <code>parse</code> function.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preprocess</span>(<span class="hljs-params">text: <span class="hljs-built_in">string</span>, options: object</span>): <span class="hljs-title">string</span></span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="printers"></a><a href="#printers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>printers</code></h3>
+<p>Printers convert ASTs into a Prettier intermediate representation, also known as a Doc.</p>
+<p>The key must match the <code>astFormat</code> that the parser produces. The value contains an object with a <code>print</code> function and (optionally) an <code>embed</code> function.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> printers = {
+  <span class="hljs-string">"dance-ast"</span>: {
+    print,
+    embed,
+    insertPragma
+  }
+};
+</code></pre>
+<p>Printing is a recursive process of converting an AST node (represented by a path to that node) into a doc. The doc is constructed using the <a href="https://github.com/prettier/prettier/blob/master/commands.md">builder commands</a>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> { concat, join, line, ifBreak, group } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"prettier"</span>).doc.builders;
+</code></pre>
+<p>The signature of the <code>print</code> function is:</p>
+<pre><code class="hljs css language-ts">function print(
+  // Path to the AST node to print
+  path: FastPath,
+  options: object,
+  // Recursively print a child node
+  print: (path: FastPath) =&gt; Doc
+): Doc;
+</code></pre>
+<p>Check out <a href="https://github.com/prettier/prettier-python/blob/034ba8a9551f3fa22cead41b323be0b28d06d13b/src/printer.js#L174">prettier-python's printer</a> as an example.</p>
+<p>Embedding refers to printing one language inside another. Examples of this are CSS-in-JS and Markdown code blocks. Plugins can switch to alternate languages using the <code>embed</code> function. Its signature is:</p>
+<pre><code class="hljs css language-ts">function embed(
+  // Path to the current AST node
+  path: FastPath,
+  // Print a node with the current printer
+  print: (path: FastPath) =&gt; Doc,
+  // Parse and print some text using a different parser.
+  // You should set `options.parser` to specify which parser to use.
+  textToDoc: (text: string, options: object) =&gt; Doc,
+  // Current options
+  options: object
+): Doc | null;
+</code></pre>
+<p>If you don't want to switch to a different parser, simply return <code>null</code> or <code>undefined</code>.</p>
+<p>A plugin can implement how a pragma comment is inserted in the resulting code when the <code>--insert-pragma</code> option is used, in the <code>insertPragma</code> function. Its signature is:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">insertPragma</span>(<span class="hljs-params">text: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span></span>;
+</code></pre>
+<p><em>(Optional)</em> The preprocess function can process the ast from parser before passing into <code>print</code> function.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preprocess</span>(<span class="hljs-params">ast: AST, options: object</span>): <span class="hljs-title">AST</span></span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>options</code></h3>
+<p><code>options</code> is an object containing the custom options your plugin supports.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-js">options: {
+  <span class="hljs-attr">openingBraceNewLine</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"boolean"</span>,
+    <span class="hljs-attr">category</span>: <span class="hljs-string">"Global"</span>,
+    <span class="hljs-attr">default</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">"Move open brace for code blocks onto new line."</span>
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="defaultoptions"></a><a href="#defaultoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>defaultOptions</code></h3>
+<p>If your plugin requires different default values for some of Prettier's core options, you can specify them in <code>defaultOptions</code>:</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">defaultOptions</span>: {
+  <span class="hljs-attribute">tabWidth</span>: <span class="hljs-number">4</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="utility-functions"></a><a href="#utility-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utility functions</h3>
+<p>A <code>util</code> module from Prettier core is considered a private API and is not meant to be consumed by plugins. Instead, the <code>util-shared</code> module provides the following limited set of utility functions for plugins:</p>
+<pre><code class="hljs css language-ts">getMaxContinuousCount(str: <span class="hljs-built_in">string</span>, target: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">number</span>;
+getStringWidth(text: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">number</span>;
+getAlignmentSize(value: <span class="hljs-built_in">string</span>, tabWidth: <span class="hljs-built_in">number</span>, startIndex: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+getIndentSize(value: <span class="hljs-built_in">string</span>, tabWidth: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+skip(chars: <span class="hljs-built_in">string</span>|<span class="hljs-built_in">RegExp</span>): <span class="hljs-built_in">number</span>;
+skipWhitespace(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">number</span>;
+skipSpaces(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">number</span>;
+skipToLineEnd(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">number</span>;
+skipEverythingButNewLine(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">number</span>;
+skipInlineComment(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+skipTrailingComment(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+skipNewline(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">number</span>;
+hasNewline(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">boolean</span>;
+hasNewlineInRange(text: <span class="hljs-built_in">string</span>, start: <span class="hljs-built_in">number</span>, start: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;
+hasSpaces(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>, options: object): <span class="hljs-built_in">number</span>;
+makeString(rawContent: <span class="hljs-built_in">string</span>, enclosingQuote: <span class="hljs-built_in">string</span>, unescapeUnnecessarEscapes: <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">string</span>;
+getNextNonSpaceNonCommentCharacterIndex(text: <span class="hljs-built_in">string</span>, node: object, options: object): <span class="hljs-built_in">number</span>;
+isNextLineEmptyAfterIndex(text: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;
+isNextLineEmpty(text: <span class="hljs-built_in">string</span>, node: object, options: object): <span class="hljs-built_in">boolean</span>;
+isPreviousLineEmpty(text: <span class="hljs-built_in">string</span>, node: object, options: object): <span class="hljs-built_in">boolean</span>;
+mapDoc(doc: object, callback: <span class="hljs-function"><span class="hljs-keyword">function</span>): <span class="hljs-title">void</span></span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="tutorials"></a><a href="#tutorials" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tutorials</h3>
+<ul>
+<li><a href="https://medium.com/@fvictorio/how-to-write-a-plugin-for-prettier-a0d98c845e70">How to write a plugin for Prettier</a>: Teaches you how to write a very basic Prettier plugin for TOML.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="testing-plugins"></a><a href="#testing-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Plugins</h2>
+<p>Since plugins can be resolved using relative paths, when working on one you can do:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> prettier = <span class="hljs-built_in">require</span>(<span class="hljs-string">"prettier"</span>);
+<span class="hljs-keyword">const</span> code = <span class="hljs-string">"(add 1 2)"</span>;
+prettier.format(code, {
+  <span class="hljs-attr">parser</span>: <span class="hljs-string">"lisp"</span>,
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"."</span>]
+});
+</code></pre>
+<p>This will resolve a plugin relative to the current working directory.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/browser.html"><span class="arrow-prev">← </span><span>Browser</span></a><a class="docs-next button" href="/docs/en/precommit.html"><span>Pre-commit Hook</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#in-beta">IN BETA</a></li><li><a href="#using-plugins">Using Plugins</a></li><li><a href="#official-plugins">Official Plugins</a></li><li><a href="#community-plugins">Community Plugins</a></li><li><a href="#developing-plugins">Developing Plugins</a><ul class="toc-headings"><li><a href="#languages"><code>languages</code></a></li><li><a href="#parsers"><code>parsers</code></a></li><li><a href="#printers"><code>printers</code></a></li><li><a href="#options"><code>options</code></a></li><li><a href="#defaultoptions"><code>defaultOptions</code></a></li><li><a href="#utility-functions">Utility functions</a></li><li><a href="#tutorials">Tutorials</a></li></ul></li><li><a href="#testing-plugins">Testing Plugins</a></li></ul></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/icon.png" alt="Prettier"/></a><div><h5>Docs</h5><a href="/docs/en/index.html">About</a><a href="/docs/en/install.html">Usage</a></div><div><h5>Community</h5><a href="/en/users">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/prettier" target="_blank" rel="noopener noreferrer">Stack Overflow</a><a href="https://gitter.im/jlongster/prettier">Chat on Gitter</a><a href="https://twitter.com/PrettierCode">@PrettierCode on Twitter</a><object type="image/svg+xml" data="https://img.shields.io/twitter/follow/prettiercode.svg?label=Follow+Prettier&amp;style=social"><a href="https://twitter.com/intent/follow?screen_name=prettiercode"><img alt="Follow Prettier on Twitter" src="https://img.shields.io/twitter/follow/prettiercode.png?label=Follow+Prettier&amp;style=social"/></a></object></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/prettier/prettier">GitHub</a><a href="https://github.com/prettier/prettier/issues">Issues</a><a class="github-button" href="https://github.com/prettier/prettier" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'undefined',
+                indexName: 'prettier',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuration File · Prettier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Prettier uses &lt;a href=&quot;https://github.com/davidtheclark/cosmiconfig&quot;&gt;cosmiconfig&lt;/a&gt; for configuration file support. This means you can configure prettier via:&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Configuration File · Prettier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://prettier.io/index.html"/><meta property="og:description" content="&lt;p&gt;Prettier uses &lt;a href=&quot;https://github.com/davidtheclark/cosmiconfig&quot;&gt;cosmiconfig&lt;/a&gt; for configuration file support. This means you can configure prettier via:&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/icon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://prettier.io/blog/atom.xml" title="Prettier Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://prettier.io/blog/feed.xml" title="Prettier Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-111350464-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="//unpkg.com/@sandhose/prettier-animated-logo@1.0.3/dist/wide.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/icon.png" alt="Prettier"/><h2 class="headerTitleWithLogo">Prettier</h2></a><a href="/versions.html"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/playground/" target="_self">Playground</a></li><li class="siteNavGroupActive"><a href="/docs/en/next/index.html" target="_self">About</a></li><li class="siteNavGroupActive"><a href="/docs/en/next/install.html" target="_self">Usage</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/prettier/prettier" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Configuring Prettier</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">About</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/index.html">What is Prettier?</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/why-prettier.html">Why Prettier?</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/comparison.html">Prettier vs. Linters</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/option-philosophy.html">Option Philosophy</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/rationale.html">Rationale</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Usage</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/install.html">Install</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/cli.html">CLI</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/api.html">API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/browser.html">Browser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/plugins.html">Plugins (Beta)</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/precommit.html">Pre-commit Hook</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/watching-files.html">Watching For Changes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/eslint.html">Integrating with ESLint</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/ignore.html">Ignoring Code</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Configuring Prettier</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/options.html">Options</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/configuration.html">Configuration File</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Editors</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/editors.html">Editor Integration</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/webstorm.html">WebStorm Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/vim.html">Vim Setup</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Misc</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/technical-details.html">Technical Details</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/related-projects.html">Related Projects</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/prettier/prettier/edit/master/docs/configuration.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Configuration File</h1></header><article><div><span><p>Prettier uses <a href="https://github.com/davidtheclark/cosmiconfig">cosmiconfig</a> for configuration file support. This means you can configure prettier via:</p>
+<ul>
+<li>A <code>.prettierrc</code> file, written in YAML or JSON, with optional extensions: <code>.yaml/.yml/.json</code>.</li>
+<li>A <code>.prettierrc.toml</code> file, written in TOML (the <code>.toml</code> extension is <em>required</em>).</li>
+<li>A <code>prettier.config.js</code> or <code>.prettierrc.js</code> file that exports an object.</li>
+<li>A <code>&quot;prettier&quot;</code> key in your <code>package.json</code> file.</li>
+</ul>
+<p>The configuration file will be resolved starting from the location of the file being formatted, and searching up the file tree until a config file is (or isn't) found.</p>
+<p>The options to the configuration file are the same as the <a href="/docs/en/next/options.html">API options</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="basic-configuration"></a><a href="#basic-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basic Configuration</h2>
+<p>JSON:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"trailingComma"</span>: <span class="hljs-string">"es5"</span>,
+  <span class="hljs-attr">"tabWidth"</span>: <span class="hljs-number">4</span>,
+  <span class="hljs-attr">"semi"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"singleQuote"</span>: <span class="hljs-literal">true</span>
+}
+</code></pre>
+<p>JS:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// prettier.config.js or .prettierrc.js</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">trailingComma</span>: <span class="hljs-string">"es5"</span>,
+  <span class="hljs-attr">tabWidth</span>: <span class="hljs-number">4</span>,
+  <span class="hljs-attr">semi</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">singleQuote</span>: <span class="hljs-literal">true</span>
+};
+</code></pre>
+<p>YAML:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># .prettierrc or .prettierrc.yaml</span>
+<span class="hljs-attr">trailingComma:</span> <span class="hljs-string">"es5"</span>
+<span class="hljs-attr">tabWidth:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">semi:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">singleQuote:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>TOML:</p>
+<pre><code class="hljs css language-toml"><span class="hljs-comment"># .prettierrc.toml</span>
+<span class="hljs-attr">trailingComma</span> = <span class="hljs-string">"es5"</span>
+<span class="hljs-attr">tabWidth</span> = <span class="hljs-number">4</span>
+<span class="hljs-attr">semi</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">singleQuote</span> = <span class="hljs-literal">true</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="configuration-overrides"></a><a href="#configuration-overrides" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration Overrides</h2>
+<p>Prettier borrows eslint's <a href="http://eslint.org/docs/user-guide/configuring#example-configuration">override format</a>. This allows you to apply configuration to specific files.</p>
+<p>JSON:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"semi"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"overrides"</span>: [
+    {
+      <span class="hljs-attr">"files"</span>: <span class="hljs-string">"*.test.js"</span>,
+      <span class="hljs-attr">"options"</span>: {
+        <span class="hljs-attr">"semi"</span>: <span class="hljs-literal">true</span>
+      }
+    }
+  ]
+}
+</code></pre>
+<p>YAML:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">semi:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">overrides:</span>
+<span class="hljs-attr">  - files:</span> <span class="hljs-string">"*.test.js"</span>
+<span class="hljs-attr">    options:</span>
+<span class="hljs-attr">      semi:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p><code>files</code> is required for each override, and may be a string or array of strings. <code>excludeFiles</code> may be optionally provided to exclude files for a given rule, and may also be a string or array of strings.</p>
+<h2><a class="anchor" aria-hidden="true" id="setting-the-parser-docs-en-next-optionshtml-parser-option"></a><a href="#setting-the-parser-docs-en-next-optionshtml-parser-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting the <a href="/docs/en/next/options.html#parser">parser</a> option</h2>
+<p>By default, Prettier automatically infers which parser to use based on the input file extension. Combined with <code>overrides</code> you can teach Prettier how to parse files it does not recognize.</p>
+<p>For example, to get Prettier to format its own <code>.prettierrc</code> file, you can do:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"overrides"</span>: [
+    {
+      <span class="hljs-attr">"files"</span>: <span class="hljs-string">".prettierrc"</span>,
+      <span class="hljs-attr">"options"</span>: { <span class="hljs-attr">"parser"</span>: <span class="hljs-string">"json"</span> }
+    }
+  ]
+}
+</code></pre>
+<p>You can also switch to the <code>flow</code> parser instead of the default <code>babel</code> for .js files:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"overrides"</span>: [
+    {
+      <span class="hljs-attr">"files"</span>: <span class="hljs-string">"*.js"</span>,
+      <span class="hljs-attr">"options"</span>: {
+        <span class="hljs-attr">"parser"</span>: <span class="hljs-string">"flow"</span>
+      }
+    }
+  ]
+}
+</code></pre>
+<p><strong>Note:</strong> <em>Never</em> put the <code>parser</code> option at the top level of your configuration. <em>Only</em> use it inside <code>overrides</code>. Otherwise you effectively disable Prettier's automatic file extension based parser inference. This forces Prettier to use the parser you specified for <em>all</em> types of files – even when it doesn't make sense, such as trying to parse a CSS file as JavaScript.</p>
+<h2><a class="anchor" aria-hidden="true" id="configuration-schema"></a><a href="#configuration-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration Schema</h2>
+<p>If you'd like a JSON schema to validate your configuration, one is available here: <a href="http://json.schemastore.org/prettierrc">http://json.schemastore.org/prettierrc</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/options.html"><span class="arrow-prev">← </span><span>Options</span></a><a class="docs-next button" href="/docs/en/next/editors.html"><span>Editor Integration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-configuration">Basic Configuration</a></li><li><a href="#configuration-overrides">Configuration Overrides</a></li><li><a href="#setting-the-parser-docs-en-next-optionshtml-parser-option">Setting the <a href="/docs/en/next/options.html#parser">parser</a> option</a></li><li><a href="#configuration-schema">Configuration Schema</a></li></ul></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/icon.png" alt="Prettier"/></a><div><h5>Docs</h5><a href="/docs/en/index.html">About</a><a href="/docs/en/install.html">Usage</a></div><div><h5>Community</h5><a href="/en/users">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/prettier" target="_blank" rel="noopener noreferrer">Stack Overflow</a><a href="https://gitter.im/jlongster/prettier">Chat on Gitter</a><a href="https://twitter.com/PrettierCode">@PrettierCode on Twitter</a><object type="image/svg+xml" data="https://img.shields.io/twitter/follow/prettiercode.svg?label=Follow+Prettier&amp;style=social"><a href="https://twitter.com/intent/follow?screen_name=prettiercode"><img alt="Follow Prettier on Twitter" src="https://img.shields.io/twitter/follow/prettiercode.png?label=Follow+Prettier&amp;style=social"/></a></object></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/prettier/prettier">GitHub</a><a href="https://github.com/prettier/prettier/issues">Issues</a><a class="github-button" href="https://github.com/prettier/prettier" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'undefined',
+                indexName: 'prettier',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

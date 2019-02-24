@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CLI · Prettier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Run Prettier through the CLI with this script. Run it without any arguments to see the &lt;a href=&quot;/docs/en/options.html&quot;&gt;options&lt;/a&gt;.&lt;/p&gt;
+"/><meta name="docsearch:version" content="stable"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CLI · Prettier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://prettier.io/index.html"/><meta property="og:description" content="&lt;p&gt;Run Prettier through the CLI with this script. Run it without any arguments to see the &lt;a href=&quot;/docs/en/options.html&quot;&gt;options&lt;/a&gt;.&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/icon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://prettier.io/blog/atom.xml" title="Prettier Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://prettier.io/blog/feed.xml" title="Prettier Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-111350464-1', 'auto');
+              ga('send', 'pageview');
+            </script><link rel="stylesheet" href="//unpkg.com/@sandhose/prettier-animated-logo@1.0.3/dist/wide.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/icon.png" alt="Prettier"/><h2 class="headerTitleWithLogo">Prettier</h2></a><a href="/versions.html"><h3>stable</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/playground/" target="_self">Playground</a></li><li class="siteNavGroupActive"><a href="/docs/en/index.html" target="_self">About</a></li><li class="siteNavGroupActive"><a href="/docs/en/install.html" target="_self">Usage</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/prettier/prettier" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Usage</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">About</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/index.html">What is Prettier?</a></li><li class="navListItem"><a class="navItem" href="/docs/en/why-prettier.html">Why Prettier?</a></li><li class="navListItem"><a class="navItem" href="/docs/en/comparison.html">Prettier vs. Linters</a></li><li class="navListItem"><a class="navItem" href="/docs/en/option-philosophy.html">Option Philosophy</a></li><li class="navListItem"><a class="navItem" href="/docs/en/rationale.html">Rationale</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Usage</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/install.html">Install</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/cli.html">CLI</a></li><li class="navListItem"><a class="navItem" href="/docs/en/api.html">API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/browser.html">Browser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins.html">Plugins (Beta)</a></li><li class="navListItem"><a class="navItem" href="/docs/en/precommit.html">Pre-commit Hook</a></li><li class="navListItem"><a class="navItem" href="/docs/en/watching-files.html">Watching For Changes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/eslint.html">Integrating with ESLint</a></li><li class="navListItem"><a class="navItem" href="/docs/en/ignore.html">Ignoring Code</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Configuring Prettier</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration.html">Configuration File</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Editors</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/editors.html">Editor Integration</a></li><li class="navListItem"><a class="navItem" href="/docs/en/webstorm.html">WebStorm Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/en/vim.html">Vim Setup</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Misc</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/technical-details.html">Technical Details</a></li><li class="navListItem"><a class="navItem" href="/docs/en/related-projects.html">Related Projects</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/prettier/prettier/edit/master/docs/cli.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">CLI</h1></header><article><div><span><p>Run Prettier through the CLI with this script. Run it without any arguments to see the <a href="/docs/en/options.html">options</a>.</p>
+<p>To format a file in-place, use <code>--write</code>. You may want to consider committing your code before doing that, just in case.</p>
+<pre><code class="hljs css language-bash">prettier [opts] [filename ...]
+</code></pre>
+<p>In practice, this may look something like:</p>
+<pre><code class="hljs css language-bash">prettier --single-quote --trailing-comma es5 --write <span class="hljs-string">"{app,__{tests,mocks}__}/**/*.js"</span>
+</code></pre>
+<p>Don't forget the quotes around the globs! The quotes make sure that Prettier expands the globs rather than your shell, for cross-platform usage. The <a href="https://github.com/isaacs/node-glob/blob/master/README.md#glob-primer">glob syntax from the glob module</a> is used.</p>
+<p>Prettier CLI will ignore files located in <code>node_modules</code> directory. To opt-out from this behavior use <code>--with-node-modules</code> flag.</p>
+<h2><a class="anchor" aria-hidden="true" id="check"></a><a href="#check" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--check</code></h2>
+<p>When you want to check if your files are formatted, you can run Prettier with the <code>--check</code> flag (or <code>-c</code>).
+This will output a human-friendly message and a list of unformatted files, if any.</p>
+<pre><code class="hljs css language-bash">prettier --check <span class="hljs-string">"src/**/*.js"</span>
+</code></pre>
+<p>Console output if all files are formatted:</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-title">Checking</span></span> formatting...
+<span class="hljs-keyword">All</span> matched <span class="hljs-keyword">files</span> use Prettier code style!
+</code></pre>
+<p>Console output if some of the files require re-formatting:</p>
+<pre><code class="hljs">Checking formatting...
+src/fileA.js
+src/fileB.js
+Code style issues found <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">above</span> <span class="hljs-built_in">file</span>(s). Forgot <span class="hljs-keyword">to</span> <span class="hljs-built_in">run</span> Prettier?
+</code></pre>
+<p>The command will return exit code 1 in the second case, which is helpful inside the CI pipelines.
+Human-friendly status messages help project contributors react on possible problems.
+To minimise the number of times <code>prettier --check</code> finds unformatted files, you may be interested in configuring a <a href="/docs/en/precommit.html">pre-commit hook</a> in your repo.
+Applying this practice will minimise the number of times the CI fails because of code formatting problems.</p>
+<p>If you need to pipe the list of unformatted files to another command, you can use <a href="/docs/en/cli.html#list-different"><code>--list-different</code></a> flag instead of <code>--check</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="debug-check"></a><a href="#debug-check" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--debug-check</code></h2>
+<p>If you're worried that Prettier will change the correctness of your code, add <code>--debug-check</code> to the command. This will cause Prettier to print an error message if it detects that code correctness might have changed. Note that <code>--write</code> cannot be used with <code>--debug-check</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="find-config-path-and-config"></a><a href="#find-config-path-and-config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--find-config-path</code> and <code>--config</code></h2>
+<p>If you are repeatedly formatting individual files with <code>prettier</code>, you will incur a small performance cost when prettier attempts to look up a <a href="/docs/en/configuration.html">configuration file</a>. In order to skip this, you may ask prettier to find the config file once, and re-use it later on.</p>
+<pre><code class="hljs css language-bash">prettier --find-config-path ./my/file.js
+./my/.prettierrc
+</code></pre>
+<p>This will provide you with a path to the configuration file, which you can pass to <code>--config</code>:</p>
+<pre><code class="hljs css language-bash">prettier --config ./my/.prettierrc --write ./my/file.js
+</code></pre>
+<p>You can also use <code>--config</code> if your configuration file lives somewhere where prettier cannot find it, such as a <code>config/</code> directory.</p>
+<p>If you don't have a configuration file, or want to ignore it if it does exist, you can pass <code>--no-config</code> instead.</p>
+<h2><a class="anchor" aria-hidden="true" id="ignore-path"></a><a href="#ignore-path" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--ignore-path</code></h2>
+<p>Path to a file containing patterns that describe files to ignore. By default, prettier looks for <code>./.prettierignore</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="require-pragma"></a><a href="#require-pragma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--require-pragma</code></h2>
+<p>Require a special comment, called a pragma, to be present in the file's first docblock comment in order for prettier to format it.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">/**
+ * @prettier
+ */</span>
+</code></pre>
+<p>Valid pragmas are <code>@prettier</code> and <code>@format</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="insert-pragma"></a><a href="#insert-pragma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--insert-pragma</code></h2>
+<p>Insert a <code>@format</code> pragma to the top of formatted files when pragma is absent. Works well when used in tandem with <code>--require-pragma</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="list-different"></a><a href="#list-different" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--list-different</code></h2>
+<p>Another useful flag is <code>--list-different</code> (or <code>-l</code>) which prints the filenames of files that are different from Prettier formatting. If there are differences the script errors out, which is useful in a CI scenario.</p>
+<pre><code class="hljs css language-bash">prettier --single-quote --list-different <span class="hljs-string">"src/**/*.js"</span>
+</code></pre>
+<p>You can also use <a href="/docs/en/cli.html#check"><code>--check</code></a> flag, which works the same way as <code>--list-different</code>, but also prints a human-friendly summary message to stdout.</p>
+<h2><a class="anchor" aria-hidden="true" id="no-config"></a><a href="#no-config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--no-config</code></h2>
+<p>Do not look for a configuration file. The default settings will be used.</p>
+<h2><a class="anchor" aria-hidden="true" id="config-precedence"></a><a href="#config-precedence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--config-precedence</code></h2>
+<p>Defines how config file should be evaluated in combination of CLI options.</p>
+<p><strong>cli-override (default)</strong></p>
+<p>CLI options take precedence over config file</p>
+<p><strong>file-override</strong></p>
+<p>Config file take precedence over CLI options</p>
+<p><strong>prefer-file</strong></p>
+<p>If a config file is found will evaluate it and ignore other CLI options. If no config file is found CLI options will evaluate as normal.</p>
+<p>This option adds support to editor integrations where users define their default configuration but want to respect project specific configuration.</p>
+<h2><a class="anchor" aria-hidden="true" id="no-editorconfig"></a><a href="#no-editorconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--no-editorconfig</code></h2>
+<p>Don't take .editorconfig into account when parsing configuration. See the <a href="/docs/en/api.html"><code>prettier.resolveConfig</code> docs</a> for details.</p>
+<h2><a class="anchor" aria-hidden="true" id="with-node-modules"></a><a href="#with-node-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--with-node-modules</code></h2>
+<p>Prettier CLI will ignore files located in <code>node_modules</code> directory. To opt-out from this behavior use <code>--with-node-modules</code> flag.</p>
+<h2><a class="anchor" aria-hidden="true" id="write"></a><a href="#write" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--write</code></h2>
+<p>This rewrites all processed files in place. This is comparable to the <code>eslint --fix</code> workflow.</p>
+<h2><a class="anchor" aria-hidden="true" id="loglevel"></a><a href="#loglevel" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--loglevel</code></h2>
+<p>Change the level of logging for the CLI. Valid options are:</p>
+<ul>
+<li><code>error</code></li>
+<li><code>warn</code></li>
+<li><code>log</code> (default)</li>
+<li><code>debug</code></li>
+<li><code>silent</code></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="stdin-filepath"></a><a href="#stdin-filepath" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>--stdin-filepath</code></h2>
+<p>A path to the file that the Prettier CLI will treat like stdin. For example:</p>
+<p><em>abc.css</em></p>
+<pre><code class="hljs css language-css"><span class="hljs-selector-class">.name</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+</code></pre>
+<p><em>shell</em></p>
+<pre><code class="hljs css language-bash">$ cat abc.css | prettier --stdin-filepath abc.css
+.name {
+  display: none;
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/install.html"><span class="arrow-prev">← </span><span>Install</span></a><a class="docs-next button" href="/docs/en/api.html"><span>API</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#check"><code>--check</code></a></li><li><a href="#debug-check"><code>--debug-check</code></a></li><li><a href="#find-config-path-and-config"><code>--find-config-path</code> and <code>--config</code></a></li><li><a href="#ignore-path"><code>--ignore-path</code></a></li><li><a href="#require-pragma"><code>--require-pragma</code></a></li><li><a href="#insert-pragma"><code>--insert-pragma</code></a></li><li><a href="#list-different"><code>--list-different</code></a></li><li><a href="#no-config"><code>--no-config</code></a></li><li><a href="#config-precedence"><code>--config-precedence</code></a></li><li><a href="#no-editorconfig"><code>--no-editorconfig</code></a></li><li><a href="#with-node-modules"><code>--with-node-modules</code></a></li><li><a href="#write"><code>--write</code></a></li><li><a href="#loglevel"><code>--loglevel</code></a></li><li><a href="#stdin-filepath"><code>--stdin-filepath</code></a></li></ul></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/icon.png" alt="Prettier"/></a><div><h5>Docs</h5><a href="/docs/en/index.html">About</a><a href="/docs/en/install.html">Usage</a></div><div><h5>Community</h5><a href="/en/users">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/prettier" target="_blank" rel="noopener noreferrer">Stack Overflow</a><a href="https://gitter.im/jlongster/prettier">Chat on Gitter</a><a href="https://twitter.com/PrettierCode">@PrettierCode on Twitter</a><object type="image/svg+xml" data="https://img.shields.io/twitter/follow/prettiercode.svg?label=Follow+Prettier&amp;style=social"><a href="https://twitter.com/intent/follow?screen_name=prettiercode"><img alt="Follow Prettier on Twitter" src="https://img.shields.io/twitter/follow/prettiercode.png?label=Follow+Prettier&amp;style=social"/></a></object></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/prettier/prettier">GitHub</a><a href="https://github.com/prettier/prettier/issues">Issues</a><a class="github-button" href="https://github.com/prettier/prettier" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'undefined',
+                indexName: 'prettier',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
