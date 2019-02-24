@@ -49,6 +49,8 @@ export function getCodemirrorMode(parser) {
       return "graphql";
     case "markdown":
       return "markdown";
+    case "ruby":
+      return "ruby";
     default:
       return "jsx";
   }
