@@ -39,8 +39,6 @@ function getMarkdownSyntax(options) {
     case "babylon": // backward compatibility
     case "flow":
       return "jsx";
-    case "ruby":
-      return "html";
     case "typescript":
       return "tsx";
     case "json":
